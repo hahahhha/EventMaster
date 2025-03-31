@@ -1,0 +1,53 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+header {
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #FAE5CA;
+  height: 12vh;
+}
+
+.logoblock {
+  margin-left: 10%;
+  margin-bottom: 15px;
+  padding: 20px;
+  border-radius: 0 0 26px 26px;
+  background-color: #FCC491;
+  font-weight: 800;
+}
+
+header a{
+  text-decoration: none;
+  color: black;
+}
+
+.logolink {
+  font-size: 24px;
+  padding: 5px;
+  display: inline-block;
+  transition: transform 0.1s ease-in-out;
+}
+
+.logolink:hover {
+  transform: scale(1.05);
+}
+
+.authblock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  padding: 10px;
+  margin-right: 25px;
+}
+
+.authblock a{
+  margin-right: 30px;
+  font-weight: 550;
+}
