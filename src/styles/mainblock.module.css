@@ -11,6 +11,12 @@
     margin-bottom: 45px;
 }
 
+.title {
+    font-family: "Inter", sans-serif;
+    font-size: 70px;
+    font-weight: bolder;
+}
+
 main {
     overflow: hidden;
     font-family: 'Inter', sans-serif;
@@ -21,9 +27,18 @@ main {
     display: flex;
 }
 
+.rightside {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 60%;
+}
+
 .rightside img {
-    transform: scale(0.8);
+    width: 650px;
     border-radius: 110px;
+    margin: auto;
 }
 
 .startbtn {
