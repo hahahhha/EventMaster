@@ -1,0 +1,94 @@
+.fullheightblock {
+    height: 100vh;
+    background-color: #2B7A77;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: "Inter";
+}
+
+.maincontainer {
+    width: 100%;
+    background-color: #3AAFA9;
+    height: 70vh;
+    margin-top: 15vh;
+    margin-bottom: 15vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    flex-direction: column;
+}
+
+.maincontainer h1 {
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    margin-bottom: 60px;
+    color: white;
+}
+
+.formcontainer {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: row;
+    gap: 40px;
+}
+
+.formcontainer input {
+    font-size: 21px;
+    padding: 6px 20px;
+    font-family: "Inter";
+    border: 1px solid black;
+    border-radius: 10px;
+    
+}
+
+.formcontainer input::placeholder {
+    color: #D9D9D9;
+}
+
+.leftpart, .rightpart {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.btnContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.regBtn {
+    border: none;
+    background-color: #17242C;
+    color: white;
+    padding: 10px 40px;
+    font-size: 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 100ms ease-out;
+}
+
+.regBtn:hover {
+    transform: scale(1.01);
+    background-color: #141414;
+}
+
+.regBtn:active {
+    transform: scale(0.99);
+}
+/* form {
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    background-color: #fff;
+} */

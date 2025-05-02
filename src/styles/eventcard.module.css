@@ -1,0 +1,30 @@
+.evtcard {
+    word-wrap: break-word;
+    max-width: 400px;
+    height: 550px;
+    max-height: 550px;
+    background-color: #fff;
+    font-family: "Inter", sans-serif;
+}
+
+.evtcard p, time, a {
+    margin: 10px;
+    color: black;
+}
+
+.evtcard a {
+    text-decoration: none;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    color: #3b3b3b;
+    font-style: italic;
+}
+
+.evtcard img {
+    width: 100%;
+    height: auto;
+}
+
+.evtcard time {
+    display: block;
+}
