@@ -54,6 +54,10 @@ const router = createBrowserRouter([
   {
     path: "/forgotpassword",
     element: <h1 style={{color: "black"}}>Тут будет восстановление пароля</h1>
+  },
+  {
+    path: "/rating",
+    element: <h1>rating</h1>
   }
 ]);
 

@@ -11,6 +11,8 @@ import accLogo from '../assets/account_img.svg'
 
 function Mainpage() {
     const navigate = useNavigate();
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
     // просматривать можно
     // useEffect(() => {
     //     const checkAuth = async () => {
@@ -41,6 +43,18 @@ function Mainpage() {
         getEvents(); 
     }, []);
 
+    useEffect(() => {
+        const handleClick = (e) => {
+          if (!e.target.closest(`.${styles.dropdown}`) && 
+              !e.target.closest(`.${styles.islandSearchBtn}`)) {
+                setIsDropdownOpen(false);
+          }
+        };
+        
+        document.addEventListener('click', handleClick);
+        return () => document.removeEventListener('click', handleClick);
+      }, []);
+
     return (
         <div className={styles.mainContainer}>
             <section className={styles.topSection}>
@@ -48,16 +62,25 @@ function Mainpage() {
                     <span className={styles.logo}>StudentFlow</span>
                     <a href="/login">Вход</a>
                     <a href="/register">Регистрация</a>
-                    <div className={styles.topSectionSearch}>
-                        <input placeholder='Поиск' />
-                        <button className={styles.searchBtn}>
-                            Искать
-                        </button>
-                        <a href='/profile'>
-                            <img className={styles.islandSearchBtn} 
-                            src={accLogo}/>
-                        </a>
-                    </div>
+                    <input placeholder='Поиск' />
+                    <button className={styles.searchBtn}>Искать</button>
+                    
+                    <img 
+                        className={styles.islandSearchBtn} 
+                        src={accLogo}
+                        onClick={() => {setIsDropdownOpen(!isDropdownOpen); console.log(isDropdownOpen)}} // Важно: стрелочная функция
+                        alt="Dropdown trigger"
+                    />
+                    
+                    {isDropdownOpen && (
+                        <div className={styles.dropdown}>
+                            <ul>
+                                <li><a href="/profile">Профиль</a></li>
+                                <li><a href="/create-evt">Создать мероприятие</a></li>
+                                <li><a href="/rating">Рейтинг</a></li>
+                            </ul>
+                        </div>
+                    )}
                 </div>
             </section>
 
