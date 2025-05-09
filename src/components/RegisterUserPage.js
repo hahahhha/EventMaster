@@ -61,52 +61,40 @@ function RegisterUserPage() {
     
     return (
         <div className={styles.fullheightblock}>
+            <div className={styles.headerContainer}>
+                <h1>StudentFlow</h1>
+            </div>
+
             <div className={styles.maincontainer}>
-            <h1>Регистрация пользователя</h1>
-            <form onSubmit={handler}>
-                <div className={styles.formcontainer}>
-                    <div className={styles.leftpart}>
-                        <input 
-                            type='text' 
-                            value={lastName} 
-                            onChange={(e) => setLastName(e.target.value)} 
-                            placeholder="Фамилия"/>
-                        <input 
-                            type='text' 
-                            value={firstName} 
-                            onChange={(e) => setFirstName(e.target.value)} 
-                            placeholder="Имя"/>
-                        <input 
-                            type='text' 
-                            value={email} 
-                            onChange={(e) => setEmail(e.target.value)} 
-                            placeholder="e-mail"/>
-                        <input 
-                            type="date" 
-                            value={birthDate} 
-                            onChange={(e) => setBirthDate(e.target.value)} 
-                            placeholder="Дата рождения"/>
+                <form className={styles.registerForm}>
+                    <h2>Регистрация пользователя</h2>
+                    <div className={styles.formInputGroup}>
+                        <div className={styles.leftFormPart}>
+                            <input type="text" placeholder="ФИО"/>
+                            <input type="email" placeholder="E-mail" />
+                        </div>
+                        <div className={styles.rightFormPart}>
+                            <input type="password" placeholder="Придумайте пароль" />
+                            <input type="password" placeholder="Повторите пароль" />
+                        </div>
                     </div>
-                    <div className={styles.rightpart}>
-                        <input 
-                            type='password' 
-                            value={password} 
-                            onChange={(e) => setPassword(e.target.value)} 
-                            placeholder="Придумайте пароль"/>
-                        <input 
-                            type='password' 
-                            value={confirmPassword} 
-                            onChange={(e) => setConfirmPassword(e.target.value)} 
-                            placeholder="Повторите пароль"/>
+                    <div className={styles.formBottom}>
+                        <div>
+                            <label>Дата рождения</label>
+                            <input type="date" />
+                        </div>
                     </div>
-                </div>
-                <div className={styles.btnContainer}>
-                    <button className={styles.regBtn} type='submit'>
-                        Зарегистрироваться
-                    </button>
-                </div>
-                <p>{status}</p>
-            </form>
+                    <div className={styles.btnContainer}>
+                        <button type="submit">Зарегистрироваться</button>
+                        
+                    </div>
+                    <a href="/login">Уже есть аккаунт?</a>
+                </form>
+            </div>
+
+            <div className={styles.footerContainer}>
+                <span>ProWeb</span>
+                
             </div>
         </div>
       );

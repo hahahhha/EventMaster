@@ -1,20 +1,23 @@
 /* Базовые стили */
+h1, p {
+    margin: 0;
+}
 
 .mainContainer {
-    background-color: #3AAFA9;
+    background-color: #DFF2F0;
     font-family: "Inter";
-    padding: 60px 0;
     color: white;
 }
 
 .slogan {
+    padding: 40px 0;
     font-weight: 600;
     font-size: 65px;
     line-height: 100%;
     letter-spacing: 0%;
     /* box-shadow: 0px 4px 4px 0px #00000040; */
     text-decoration: underline;
-    text-decoration-color: white;
+    text-decoration-color: #3AAFA9;
     text-decoration-thickness: 1px;
     text-underline-offset: 20px;
 }
@@ -24,10 +27,12 @@
     font-size: 24px;
     line-height: 100%;
     letter-spacing: 0%;
+    padding-bottom: 40px;
 }
 
 .eventsSection {
     background-color: #DFF2F0;
+    color: black;
 }
 
 .eventsSection h2{
@@ -46,6 +51,10 @@
     flex-direction: column;
 }
 
+.topSectionTextblock {
+    padding: 0 10vw;
+}
+
 .island {
     background-color: #2B7A77;
     display: inline;
@@ -57,6 +66,7 @@
     padding: 16px 30px;
     border-radius: 70px;
     gap: 30px;
+    margin: 30px 0;
 }
 
 .island .logo {
@@ -78,21 +88,29 @@
 
 .topSectionSearch input {
     border-radius: 70px;
+    padding: 8px 20px;
+    font-size: 16px;
     border: 1px solid white;
 }
 
 .topSectionTextblock {
     text-align: center;
-    padding: 10px 10%;
+    background-color: #fff;
+}
+
+.topSectionSearch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+.islandSearchBtn {
+    width: 40px;
 }
 
 /* Конец стилей верхней секции */
 
 /* Стили для секции событий */
-
-.eventsSection {
-    padding: 16px 25px;
-}
 
 .eventsSection h2 {
     color: #17242C;
@@ -103,32 +121,130 @@
     text-align: center;
 }
 
-.eventsBlock {
+.eventsBlock, .searchedEventsBlock {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: start;
     gap: 40px;
 }
+.islandBlock {
+    background-color: #DFF2F0;
+}
 
-/* .eventCard {
-    word-wrap: break-word;
-    max-width: 400px;
-    height: 550px;
-    max-height: 550px;
+.topSection {
+    background-color: #DFF2F0;
+}
+
+.dateEventsBlock {
+    display: flex;
+    justify-content: center;
+}
+
+.chooseDateBlock {
+    border-radius: 20px;
     background-color: #fff;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
 }
 
-.eventCard p, time {
-    margin: 10px;
-    color: black;
-}
-
-.eventCard img {
-    width: 100%;
-    height: auto;
-}
-
-.eventCard time {
+.chooseDateBlock label {
     display: block;
-} */
+}
+
+.chooseDateInputGroup {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    margin-bottom: 20px;
+}
+
+.chooseDateBlock button {
+    border: none;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    font-size: 20px;
+    padding: 8px 0;
+    width: auto;
+    cursor: pointer
+}
+
+.searchedEventsBlock {
+    padding: 40px 0;
+}
+
+.searchBlock h2 {
+    margin: 0;
+    margin-bottom: 12px;
+}
+
+.eventsSearch {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.searchBlock {
+    width: fit-content;
+    background-color: #286A6B;
+    text-align: center;
+    padding: 20px 40px;
+    margin-bottom: 20px;
+    border-radius: 24px;
+}
+
+.searchSlogan {
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    margin-bottom: 10px;
+}
+
+.searchBlock h2 {
+    font-weight: 400;
+}
+
+.search {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search input {
+    width : 500px;
+    padding: 8px 14px;
+    font-size: 20px;
+    border: 2px solid white;
+    background: none;
+    border-radius: 20px;
+    background-image: url('../assets/serach_lupa.png');
+    background-repeat: no-repeat;
+    background-position: 2% 50%;
+}
+
+.search input:focus {
+    background: none;
+    background-color: white;
+    outline: none;
+}
+
+.searchBtn {
+    border: none;
+    background-color: #17242C;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    padding: 6px 12px;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.search .searchBtn {
+    position: relative;
+    left: -100px;
+    top: 20%;
+}

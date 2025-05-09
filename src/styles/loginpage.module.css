@@ -5,18 +5,24 @@
 }
 
 .mainContainer {
-    border: 5px solid black;
     background-color: #DFF2F0;
     background-image: url('../../public/login-decorate-img.png');
     background-repeat: no-repeat;
-    background-position: right center;
+    background-position: 95% center;
     background-size: 600px;
-    padding: 100px 140px;
-    min-height: 50vh;
+    height: 80vh;
+    max-height: 80vh;
+    min-height: 80vh;
+    display: flex;
+    justify-content: start;
+    align-items: center;
 }
 
 .header, footer {
     background-color: #2B7A77;
+    height: 10vh;
+    max-height: 10vh;
+    min-height: 10vh;
 }
 
 .footer p {
@@ -40,15 +46,15 @@
     align-items: center;
     flex-direction: column;
     width: auto;
+    padding: 10px 26px;
 }
 
 .mainContainer form {
-    border: 2px solid red;
     background-color: #2B7A77;
     border: 6px solid black;
     border-radius: 26px;
     max-width: 500px;
-    
+    margin-left : 10%;
 }
 
 .mainContainer form span{
@@ -86,7 +92,6 @@
     border: none;
     transition: 150ms ease;
     margin-top: 20px;
-    margin-bottom: 10px;
 }
 
 .mainContainer form button:hover {
@@ -96,6 +101,30 @@
 
 .mainContainer form a {
     color: white;
-    margin-bottom: 20px;
     display: inline;
 }
+
+.footer {
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+
+@media (max-width: 999px) {
+    .mainContainer {
+      background-image: none; /* Скрываем изображение */
+    }
+
+    .mainContainer form {
+        width: 100%;
+        margin: 0;
+        border: none;
+    }
+
+    .mainContainer {
+        justify-content: center;
+    }
+  }

@@ -46,6 +46,14 @@ const router = createBrowserRouter([
       description="Test description lorem impsum" 
       date="27.04.2006" 
       img={testPic}/>
+  },
+  {
+    path: "/profile",
+    element: <h1 style={{color: "black"}}>Тут будет профиль</h1>
+  },
+  {
+    path: "/forgotpassword",
+    element: <h1 style={{color: "black"}}>Тут будет восстановление пароля</h1>
   }
 ]);
 

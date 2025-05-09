@@ -37,14 +37,14 @@ export default function Loginpage() {
               placeholder='пароль'/>
             </div>
             <button type="submit">Войти</button>
-            <a href="">Забыли пароль?</a>
-            <a href="">Зарегистрироваться</a>
+            <a href="/forgotpassword">Забыли пароль?</a>
+            <a href="/register">Зарегистрироваться</a>
           </div>
         </form>
       </div>
 
-      <div clsasName={styles.footer}>
-        <p>ProWeb</p>
+      <div className={styles.footer}>
+        ProWeb
       </div>
   </div>
   )
