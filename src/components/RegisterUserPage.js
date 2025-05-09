@@ -1,6 +1,6 @@
 import {React, useState} from 'react';
 import axios from 'axios';
-import styles from '../styles/RegisterPage/registerpage.module.css';
+import styles from '../styles/registerpage.module.css';
 
 function RegisterUserPage() {
     const [status, setStatus] = useState("форму не отправляли");
