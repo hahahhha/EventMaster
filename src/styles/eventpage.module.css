@@ -1,0 +1,15 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.subscribeBtn {
+    border: none;
+    background-color: #17242C;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    padding: 6px 12px;
+    font-size: 16px;
+    font-weight: 300;
+}

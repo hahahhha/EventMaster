@@ -147,7 +147,7 @@ form button:active {
     justify-content: center;   
 }
 
-a {
+.linkToAcc {
     text-align: center;
     display: block;
     color: #f4fbfb80;

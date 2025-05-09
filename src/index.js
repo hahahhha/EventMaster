@@ -10,6 +10,8 @@ import Loginpage from './components/Loginpage';
 import RegisterUserPage from './components/RegisterUserPage';
 import Loginpagenob from './components/WelcomePage';
 import Mainpage from './components/Mainpage';
+import Eventpage from './components/Eventpage';
+
 import axios from 'axios';
 import { API_URL } from './confing';
 import Eventcard from './components/Eventcard';
@@ -20,6 +22,7 @@ import Eventcard from './components/Eventcard';
 // App.js или index.js
 
 import testPic from './assets/event1.jpg'
+import Ratingpage from './components/Ratingpage';
 
 axios.defaults.baseURL = API_URL;
 const router = createBrowserRouter([
@@ -57,7 +60,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/rating",
-    element: <h1>rating</h1>
+    element: <Ratingpage />
+  },
+  {
+    path: "/event",
+    element: <Eventpage />
   }
 ]);
 

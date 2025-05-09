@@ -88,7 +88,7 @@ function RegisterUserPage() {
                         <button type="submit">Зарегистрироваться</button>
                         
                     </div>
-                    <a href="/login">Уже есть аккаунт?</a>
+                    <a className={styles.linkToAcc} href="/login">Уже есть аккаунт?</a>
                 </form>
             </div>
 
