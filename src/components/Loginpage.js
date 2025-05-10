@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from '../styles/loginpage.module.css';
 import axios from 'axios';
 import { API_URL } from '../confing';
+import Header from './Header';
 
 export default function Loginpage() {
   const [email, setEmail] = useState("");
@@ -16,9 +17,9 @@ export default function Loginpage() {
 
   return (
     <div className={styles.fullHeightContainer}>
-      <div className={styles.header}>
-        <h1 className={styles.logo}>StudentFlow</h1>
-      </div>
+      <Header>
+        StudentFlow
+      </Header>
       
       <div className={styles.mainContainer}>
         <form onSubmit={handler}>

@@ -23,6 +23,7 @@ import Eventcard from './components/Eventcard';
 
 import testPic from './assets/event1.jpg'
 import Ratingpage from './components/Ratingpage';
+import Createevt from './components/Createevt';
 
 axios.defaults.baseURL = API_URL;
 const router = createBrowserRouter([
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
   {
     path: "/event",
     element: <Eventpage />
+  },
+  {
+    path: "create-evt",
+    element: <Createevt />
   }
 ]);
 

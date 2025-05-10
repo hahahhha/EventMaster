@@ -1,6 +1,7 @@
 import {React, useState} from 'react';
 import axios from 'axios';
 import styles from '../styles/registerpage.module.css';
+import Header from './Header';
 
 function RegisterUserPage() {
     const [status, setStatus] = useState("форму не отправляли");
@@ -61,9 +62,9 @@ function RegisterUserPage() {
     
     return (
         <div className={styles.fullheightblock}>
-            <div className={styles.headerContainer}>
-                <h1>StudentFlow</h1>
-            </div>
+            <Header>
+                StudentFlow
+            </Header>
 
             <div className={styles.maincontainer}>
                 <form className={styles.registerForm}>

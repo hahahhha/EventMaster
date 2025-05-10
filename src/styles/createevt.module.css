@@ -1,0 +1,100 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.evtBlock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+}
+
+.evtBlock form p {
+    font-weight: 900;
+    font-size: 30px;
+
+}
+
+.evtBlock .slogan {
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #2A7A77;
+    margin: 30px 0;
+
+}
+
+.evtBlock label {
+    display: block;
+    color: white;
+    margin: 0;
+    margin-top: 16px;
+    margin-bottom: 4px;
+    margin-left: 4px;
+}
+
+.evtBlock input {
+    margin: 0; 
+}
+
+.evtBlock form .leftPart, .rightPart {
+    width: 50%;
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+}
+
+.evtBlock form .rightPart {
+    align-items: end;
+}
+
+.evtBlock form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #2B7A77;
+    min-width: 800px;
+    text-align: center;
+    padding: 20px;
+    border-radius: 20px;
+    border: 5px solid black;
+}
+
+.evtBlock form label {
+    align-self: flex-start;
+}
+.evtBlock form .rightPart label {
+    align-self: flex-end;
+    margin-left: 0;
+    margin-right: 4px;
+}
+
+.evtBlock form input {
+    width: 85%;
+}
+
+.evtBlock textarea {
+    padding: 12px;
+    border: 2px solid black; /* Цвет как в Header */
+    border-radius: 8px;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    background-color: #f8f8f8;
+    resize: vertical; /* Разрешаем изменять размер только по вертикали */
+    min-height: 200px;
+    width: 85%;
+    box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.evtBlock form .formRow {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.evtBlock form button {
+    margin-top: 26px;
+}

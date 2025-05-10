@@ -1,19 +1,12 @@
+import React from 'react';
 import styles from '../styles/headerStyles.module.css';
-function Header() {
-    return (
-        <>
-            <header>
-                <div className={styles.logoblock}>
-                    <a className={styles.logolink} href="/main">ProWeb</a>
-                </div>
-                <div className={styles.authblock}>
-                    <a href="/register">Регистрация</a>
-                    <a href="/login">Войти</a>
-                    <a href="/">Ещё</a>
-                </div>
-            </header>
-    </>
-    )
+
+function Header({ children }) {
+  return (
+    <header className={styles.header}>
+        <span>{children}</span>
+    </header>
+  )
 }
 
-export default Header;
+export default Header
