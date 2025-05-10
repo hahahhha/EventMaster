@@ -112,6 +112,14 @@
     width: 100%;
 }
 
+.mainContainer .error {
+    border: 2px solid red;
+}
+
+.mainContainer .errorLine {
+    color: red;
+    font-size: 20px;
+}
 
 @media (max-width: 999px) {
     .mainContainer {

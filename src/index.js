@@ -9,7 +9,7 @@ import {
 import Loginpage from './components/Loginpage';
 import RegisterUserPage from './components/RegisterUserPage';
 import Loginpagenob from './components/WelcomePage';
-import Mainpage from './components/Mainpage';
+import Mainpage from './components/MainPage';
 import Eventpage from './components/Eventpage';
 
 import axios from 'axios';
