@@ -15,7 +15,7 @@ export default function Loginpage() {
     try {
       const res = await axios.post('/api/auth/login', {
         email, password
-      });
+      }, {withCredentials: true});
       setIsError(false);
       navigate('/main');
     } catch (error) {

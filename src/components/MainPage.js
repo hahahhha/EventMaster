@@ -12,30 +12,27 @@ import accLogo from '../assets/account_img.svg'
 function Mainpage() {
     const navigate = useNavigate();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-    // просматривать можно
-    // useEffect(() => {
-    //     const checkAuth = async () => {
-    //         try {
-    //             await axios.get(`${API_URL}/api/checkAuth`, { 
-    //                 withCredentials: true 
-    //             });
-    //         } catch (error) {
-    //             console.log('Пользователь не авторизован')
-    //             navigate('/');
-    //         }
-            
-    //     }
-
-    //     checkAuth();
-    // }, [])
+    const [fromDate, setFromDate] = useState('');
     const [events, setEvents] = useState([]);
+    const [isOnlyOneDay, setIsOnlyOneDay] = useState(true);
+    const [toDate, setToDate] = useState('');
+
+    // получение сегодняшней даты
+    useEffect(() => {
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+        const formattedDate = `${year}-${month}-${day}`;
+        setFromDate(formattedDate); // Обновляем состояние
+    }, []);
+    
     useEffect(() => {
         const getEvents = async () => {
             try {
-                const result = await axios.get('/api/events/all');
-                setEvents(result.data);
-                console.log(result);
+                const result = await axios.get('/api/event/all');
+                setEvents(result.data.events);
+                console.log(result.data.events);
             } catch (error) {
                 console.error("Ошибка при получении событий:", error);
             }
@@ -43,6 +40,8 @@ function Mainpage() {
         getEvents(); 
     }, []);
 
+
+    // для выпадающего списка, чтобы он закрывался при нажатии мимо него
     useEffect(() => {
         const handleClick = (e) => {
           if (!e.target.closest(`.${styles.dropdown}`) && 
@@ -92,8 +91,48 @@ function Mainpage() {
                         Следить за важными мероприятиями, не пропускать интересные мастер-классы и студенческие активности
                     </p>
                 </div>
-                <h2>Предстоящие события</h2>
+                {/* <h2>Предстоящие события</h2>
                 <div className={styles.eventsBlock}>
+                    
+                    <Eventcard 
+                        description="Хочешь узнать, как создают роботов и нейросети? Приходи на фестиваль 8БИТ"
+                        date="04.03"
+                        img={pic1}
+                        evtId="1"/>
+                    <Eventcard 
+                        description="Хочешь узнать, как создают роботов и нейросети? Приходи на фестиваль 8БИТ"
+                        date="04.03"
+                        img={pic1}
+                        evtId="1"/>
+                </div> */}
+                <h2>События по дате</h2>
+                <div className={styles.dateEventsBlock}>
+                    <div className={styles.chooseDateBlock}>
+                        <div className={styles.chooseDateInputGroup}>
+                            <div className={styles.leftPart}>
+                                <label>С какого дня</label>
+                                <input 
+                                    type="date" 
+                                    value={fromDate} 
+                                    onChange={e => {setFromDate(e.target.value)}}/>
+                            </div>
+                            <div className={styles.rightPart}>
+                                <label>До какого дня</label>
+                                <input 
+                                    type="date" 
+                                    value={isOnlyOneDay ? '' : toDate} 
+                                    disabled={isOnlyOneDay} 
+                                    onChange={e => {setToDate(e.target.value)}}/>
+                                <div className={styles.oneDaySearch}>
+                                    <label>Поиск по одной дате</label>
+                                    <input type="checkbox" checked={isOnlyOneDay} onChange={(e) => {setIsOnlyOneDay(!isOnlyOneDay)}}/>
+                                </div>
+                            </div>
+                        </div>
+                        <button>Искать</button>
+                    </div>
+                </div>
+                <div className={styles.searchedEventsBlock}>
                     {/* {
                         events.map((item, index) => (
                             <Eventcard key={index} 
@@ -104,34 +143,6 @@ function Mainpage() {
                             />
                         ))
                     } */}
-                    <Eventcard 
-                        description="Хочешь узнать, как создают роботов и нейросети? Приходи на фестиваль 8БИТ"
-                        date="04.03"
-                        img={pic1}
-                        evtId="1"/>
-                    <Eventcard 
-                        description="Хочешь узнать, как создают роботов и нейросети? Приходи на фестиваль 8БИТ"
-                        date="04.03"
-                        img={pic1}
-                        evtId="1"/>
-                </div>
-                <h2>События по дате</h2>
-                <div className={styles.dateEventsBlock}>
-                    <div className={styles.chooseDateBlock}>
-                        <div className={styles.chooseDateInputGroup}>
-                            <div>
-                                <label>С какого дня</label>
-                                <input type="date" />
-                            </div>
-                            <div>
-                                <label>До какого дня</label>
-                                <input type="date" />
-                            </div>
-                        </div>
-                        <button>Искать</button>
-                    </div>
-                </div>
-                <div className={styles.searchedEventsBlock}>
                     <Eventcard 
                         description="Хочешь узнать, как создают роботов и нейросети? Приходи на фестиваль 8БИТ"
                         date="04.03"

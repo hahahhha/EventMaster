@@ -98,3 +98,7 @@ body {
 .evtBlock form button {
     margin-top: 26px;
 }
+
+.evtBlock .formRow .rightPart input {
+    width: 80%;
+}
