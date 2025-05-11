@@ -1,7 +1,7 @@
 .evtcard {
     word-wrap: break-word;
-    max-width: 400px;
-    height: 550px;
+    width: 400px;
+    min-height: 650px;
     max-height: 550px;
     background-color: #fff;
     font-family: "Inter", sans-serif;

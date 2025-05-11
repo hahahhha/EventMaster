@@ -4,6 +4,13 @@ import Header from './Header';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+function shortString(text) {
+  if (text.length <= 256) {
+    return text;
+  }
+  return text.substring(256) + "...";
+}
+
 function Createevt() {
   const [title, setTitle] = useState('');
   const [place, setPlace] = useState('');
@@ -54,7 +61,7 @@ function Createevt() {
       formData.append('day', day);
       formData.append('hours', hours || '00');
       formData.append('minutes', minutes || '00');
-      formData.append('short_description', description);
+      formData.append('short_description', "пока пусто");
       formData.append('organizer_id', 1);
       formData.append('place', place);
       formData.append('hashtag', hashtag);

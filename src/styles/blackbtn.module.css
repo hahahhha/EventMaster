@@ -1,0 +1,22 @@
+.blackButton {
+    background-color: black;
+    color: white;
+    font-weight: 600;
+    padding: 10px 20px;
+    font-size: 24px;
+    outline: none;
+    border: none;
+    border-radius: 12px;
+    transition: 150ms ease;
+    cursor: pointer;
+}
+
+.blackButton:hover {
+    transform: scale(1.01);
+    background-color: #0b0b0b;
+}
+
+.blackButton:active {
+    transform: scale(0.99);
+    background-color: black;
+}

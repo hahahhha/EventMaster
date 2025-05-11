@@ -9,6 +9,15 @@ import Eventcard from './Eventcard'
 import pic1 from '../assets/event1.jpg';
 import accLogo from '../assets/account_img.svg'
 
+function shortString(text) {
+    if (text.length <= 256) {
+        return text;
+    }
+    const res = text.substring(256) + "...";
+    console.log(res);
+    return res;
+}
+
 function Mainpage() {
     const navigate = useNavigate();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -32,7 +41,7 @@ function Mainpage() {
             try {
                 const result = await axios.get('/api/event/all');
                 setEvents(result.data.events);
-                console.log(result.data.events);
+                console.log(result.data.events)
             } catch (error) {
                 console.error("Ошибка при получении событий:", error);
             }
@@ -133,17 +142,21 @@ function Mainpage() {
                     </div>
                 </div>
                 <div className={styles.searchedEventsBlock}>
-                    {/* {
+                    {
                         events.map((item, index) => (
                             <Eventcard key={index} 
+                            title={item.title}
                             description={item.description}
                             date={item.date}
-                            img={pic1}
-                            evtId={item.event_id}
+                            img_url={item.img_url}
+                            evtId={item.id}
                             />
                         ))
-                    } */}
-                    <Eventcard 
+                    }
+                    <i>
+                    {events.length === 0 ? 'Мероприятия не найдены...' : ''}
+                    </i>
+                    {/* <Eventcard 
                         description="Хочешь узнать, как создают роботов и нейросети? Приходи на фестиваль 8БИТ"
                         date="04.03"
                         img={pic1}
@@ -152,7 +165,7 @@ function Mainpage() {
                         description="Хочешь узнать, как создают роботов и нейросети? Приходи на фестиваль 8БИТ"
                         date="04.03"
                         img={pic1}
-                        evtId="1"/>
+                        evtId="1"/> */}
                 </div>
             </section>
             <section className={styles.eventsSearch}>
@@ -161,7 +174,7 @@ function Mainpage() {
                     <p className={styles.searchSlogan}>Найди себя быстрее</p>
                     <p className={styles.searchSubSlogan}>Здесь ты найдёшь самые интересные для тебя новости быстрее</p>
                     <div className={styles.search}>
-                        <div className={styles.a}>
+                        <div>
                             <input type='text' />
                             <button className={styles.searchBtn}>Искать</button>
                         </div>

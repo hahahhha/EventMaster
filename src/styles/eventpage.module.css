@@ -1,15 +1,71 @@
-body {
-    margin: 0;
-    padding: 0;
+.eventPage .container {
+    width: 100%;
+    min-height: 50vh;
+    display: flex;
+    align-items: end;
 }
 
-.subscribeBtn {
-    border: none;
-    background-color: #17242C;
-    border-radius: 8px;
-    color: white;
-    cursor: pointer;
-    padding: 6px 12px;
+.eventPage .notify {
+    width: 400px;
+    background-color: #DFF2F0;
+    padding: 25px;
+    border-radius: 20px;
+    margin: 0 0 20px 80px;
+    display: flex;
+    flex-direction: column;
+}
+
+.eventPage .notify strong {
+    font-size: 24px;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.eventPage .notify p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.eventPage button {
     font-size: 16px;
-    font-weight: 300;
+}
+
+.eventPage .notify .bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.eventPage .notify .badge {
+    padding: 5px 18px;
+    background-color: #3AAFA9;
+    border-radius: 30px;
+}
+
+.eventPage .mainContainer {
+    margin: 20px 80px;
+    border-top: 1.1px solid #3AAFA9;
+}
+
+.eventPage .mainContainer h2 {
+    font-size: 34px;
+    color: black;
+    text-align: start;
+    /* text-decoration: underline;
+    text-decoration-thickness: 1.1px;
+    text-decoration-color: #3AAFA9;
+    text-underline-offset: 14px; */
+}
+
+.eventPage .mainContainer p  {
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
+    max-width: 50vw;
+}
+
+.eventPage .commentsBlock {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1.1px solid #3AAFA9;
 }
