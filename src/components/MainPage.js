@@ -9,14 +9,6 @@ import Eventcard from './Eventcard'
 import pic1 from '../assets/event1.jpg';
 import accLogo from '../assets/account_img.svg'
 
-function shortString(text) {
-    if (text.length <= 256) {
-        return text;
-    }
-    const res = text.substring(256) + "...";
-    console.log(res);
-    return res;
-}
 
 function Mainpage() {
     const navigate = useNavigate();

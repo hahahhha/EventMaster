@@ -4,12 +4,7 @@ import Header from './Header';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-function shortString(text) {
-  if (text.length <= 256) {
-    return text;
-  }
-  return text.substring(256) + "...";
-}
+
 
 function Createevt() {
   const [title, setTitle] = useState('');
