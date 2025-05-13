@@ -98,7 +98,7 @@ function Createevt() {
 
   return (
     <>
-      <Header>StudentFlow</Header>
+      <Header><a href="/main" style={{color: "white", textDecoration: "none"}}>StudentFlow</a></Header>
       <div className={styles.createEvt}>
         <div className={styles.evtBlock}>
           <p className={styles.slogan}>Создавай, управляй, развлекай</p>

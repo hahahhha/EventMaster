@@ -27,7 +27,7 @@ function Eventcard({ title, description, date, img_url, evtId }) {
   return (
     <div className={styles.evtcard}>
       <img src={`${API_URL}${img_url}`} alt={`Фотография события`} />
-      <p>{title}</p>
+      <p><b>{shortString(title)}</b></p>
       <time dateTime={date}>{formatDate(date)}</time>
       <p>{shortString(description)}</p>
       <a href={`/event?id=${evtId}`}>Подробнее...</a>

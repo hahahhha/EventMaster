@@ -4,20 +4,20 @@ import styles from '../styles/registerpage.module.css';
 import Header from './Header';
 
 function RegisterUserPage() {
-    const [status, setStatus] = useState("форму не отправляли");
+    const [status, setStatus] = useState("");
     const [lastName, setLastName] = useState("");
     const [firstName, setFirstName] = useState("");
+    const [middleName, setMiddleName] = useState(""); // Добавлено для отчества
     const [email, setEmail] = useState("");
     const [birthDate, setBirthDate] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
-    const fields = [status, lastName, firstName, email, birthDate, password, confirmPassword];
+    const fields = [lastName, firstName, email, birthDate, password, confirmPassword];
 
     const handler = async (evt) => {
         evt.preventDefault();
 
-        //Валидация (добавьте более комплексную при необходимости)
         if (password !== confirmPassword) {
             setStatus("Пароли не совпадают");
             return;
@@ -29,65 +29,101 @@ function RegisterUserPage() {
             return;
         }
 
-        // console.log("Отправка данных:", {
-        //     lastName,
-        //     firstName,
-        //     email,
-        //     birthDate,
-        //     password
-        // });
-
         try {
-            await axios.post('/api/regUser', {
-                lastName,
-                firstName,
+            const response = await axios.post('/api/auth/reg', {
+                name: firstName,
+                surname: lastName,
+                patronymic: middleName,
                 email,
-                birthDate,
-                password
+                password,
+                role: "user",
+                birthDate
             }, { withCredentials:true });
-        } catch (error) {
             
+            
+            // Очистка полей после успешной отправки
+            setLastName("");
+            setFirstName("");
+            setMiddleName("");
+            setEmail("");
+            setBirthDate("");
+            setPassword("");
+            setConfirmPassword("");
+        } catch (error) {
+            if (error.response.status === 409) {
+                setStatus("Пользователь с таким Email уже существует")
+            } else {
+                setStatus("Ошибка при регистрации пользователя")
+            }
+            console.log(error);
         }
-
-        setLastName("");
-        setFirstName("");
-        setEmail("");
-        setBirthDate("");
-        setPassword("");
-        setConfirmPassword("");
-
-        setStatus("Форма отправлена!");
     };
         
-    
     return (
         <div className={styles.fullheightblock}>
             <Header>
-                StudentFlow
+                <a href="/main" style={{textDecoration: "none", color: "white"}}>StudentFlow</a>
             </Header>
 
             <div className={styles.maincontainer}>
-                <form className={styles.registerForm}>
+                <form className={styles.registerForm} onSubmit={handler}>
                     <h2>Регистрация пользователя</h2>
+                    <p className={styles.formStatus}>{status}</p>
+
                     <div className={styles.formInputGroup}>
                         <div className={styles.leftFormPart}>
-                            <input type="text" placeholder="ФИО"/>
-                            <input type="email" placeholder="E-mail" />
+                            <input 
+                                type="text" 
+                                placeholder="Фамилия"
+                                value={lastName}
+                                onChange={(e) => setLastName(e.target.value)}
+                            />
+                            <input 
+                                type="text" 
+                                placeholder="Имя"
+                                value={firstName}
+                                onChange={(e) => setFirstName(e.target.value)}
+                            />
+                            <input 
+                                type="text" 
+                                placeholder="Отчество"
+                                value={middleName}
+                                onChange={(e) => setMiddleName(e.target.value)}
+                            />
                         </div>
                         <div className={styles.rightFormPart}>
-                            <input type="password" placeholder="Придумайте пароль" />
-                            <input type="password" placeholder="Повторите пароль" />
+                            <input 
+                                type="email" 
+                                placeholder="E-mail" 
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                            <input 
+                                type="password" 
+                                placeholder="Придумайте пароль" 
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                            <input 
+                                type="password" 
+                                placeholder="Повторите пароль" 
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                            />
                         </div>
                     </div>
                     <div className={styles.formBottom}>
                         <div>
                             <label>Дата рождения</label>
-                            <input type="date" />
+                            <input 
+                                type="date" 
+                                value={birthDate}
+                                onChange={(e) => setBirthDate(e.target.value)}
+                            />
                         </div>
                     </div>
                     <div className={styles.btnContainer}>
                         <button type="submit">Зарегистрироваться</button>
-                        
                     </div>
                     <a className={styles.linkToAcc} href="/login">Уже есть аккаунт?</a>
                 </form>
@@ -95,10 +131,9 @@ function RegisterUserPage() {
 
             <div className={styles.footerContainer}>
                 <span>ProWeb</span>
-                
             </div>
         </div>
-      );
+    );
 }
 
-export default RegisterUserPage
+export default RegisterUserPage;

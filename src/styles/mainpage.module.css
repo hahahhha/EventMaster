@@ -127,7 +127,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: start;
+    align-items: center;
     gap: 40px;
 }
 .islandBlock {
@@ -296,6 +296,23 @@
     margin-left: 1px;
 }
 
-.chooseDateInputGroup .rightPart {
-    
+.chooseDateBlock .searchInput {
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    max-width: 300px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.searchInput:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 2px 8px rgba(74, 144, 226, 0.2);
+}
+
+.searchInput::placeholder {
+    color: #aaa;
 }

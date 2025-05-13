@@ -8,7 +8,7 @@ function Loginpagenob() {
     const navigate = useNavigate();
 
     const btnHandler = (e) => {
-        navigate("/login");
+        navigate("/main");
     }
 
     useEffect(() => {

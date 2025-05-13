@@ -1,0 +1,38 @@
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.carouselContent {
+  flex: 1;
+  overflow: hidden;
+}
+
+.carouselItemsWrapper {
+  display: flex;
+  transition: transform 0.3s ease;
+}
+
+.carouselItem {
+  flex-shrink: 0;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.carouselButton {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.carouselButton:hover {
+  background: rgba(0, 0, 0, 0.8);
+}

@@ -152,3 +152,18 @@ form button:active {
     display: block;
     color: #f4fbfb80;
 }
+
+.fullheightblock .footerContainer {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.fullheightblock .registerForm h2 {
+    font-size: 34px;
+    margin: 6px 0;
+}
+
+.registerForm .formStatus {
+    color: white;
+    text-align: center;
+}

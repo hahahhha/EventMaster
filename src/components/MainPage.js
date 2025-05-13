@@ -9,6 +9,7 @@ import Eventcard from './Eventcard'
 import pic1 from '../assets/event1.jpg';
 import accLogo from '../assets/account_img.svg'
 
+import Carousel from './Carousel'
 
 function Mainpage() {
     const navigate = useNavigate();
@@ -17,30 +18,68 @@ function Mainpage() {
     const [events, setEvents] = useState([]);
     const [isOnlyOneDay, setIsOnlyOneDay] = useState(true);
     const [toDate, setToDate] = useState('');
+    const [searchKeys, setSearchKeys] = useState('');
 
-    // получение сегодняшней даты
+    const setEventsBetweenDates = async (y1, m1, d1, y2, m2, d2) => {
+        console.log(y1, m1, d1, y2, m2, d2);
+        try {
+            const result = await axios.get('/api/event/between', {
+                params: { year1: y1, month1: m1, day1: d1,
+                    year2: y2, month2: m2, day2: d2 }
+            });
+            setEvents(result.data.events);
+            return result.data.events;
+        } catch (error) {
+            console.error("Ошибка при получении событий между датами:", error);
+            setEvents([]);
+        }
+    }
+
+    const setEventsByDate = async (year, month, day) => {
+        try {
+            const result = await axios.get('/api/event/bydate', {
+                params: { year, month, day }
+            });
+            setEvents(result.data.events);
+            return result.data.events;
+        } catch (error) {
+            console.error("Ошибка при получении событий:", error);
+            setEvents([]);
+        }
+    };
+
+    const searchClickHandler = async () => {
+        const splittedFrom = fromDate.split('-').map((item) => parseInt(item));
+        const splittedTo = toDate.split('-').map((item) => parseInt(item));
+        const evts = await setEventsBetweenDates(...splittedFrom, ...splittedTo);
+        
+        if (searchKeys.trim().length > 0) {
+            const searchTerms = searchKeys.toLowerCase().split(/\s+/).filter(term => term);
+            setEvents(evts.filter(evt => {
+                const title = String(evt.title || '').toLowerCase();
+                const description = String(evt.description || '').toLowerCase();
+                
+                return searchTerms.some(term => 
+                    title.includes(term) || description.includes(term)
+                );
+            }));
+        }
+    }
+
+    // получение сегодняшней даты и событий на сегодняшнюю дату
     useEffect(() => {
         const today = new Date();
         const year = today.getFullYear();
-        const month = String(today.getMonth() + 1).padStart(2, '0');
-        const day = String(today.getDate()).padStart(2, '0');
-        const formattedDate = `${year}-${month}-${day}`;
-        setFromDate(formattedDate); // Обновляем состояние
-    }, []);
-    
-    useEffect(() => {
-        const getEvents = async () => {
-            try {
-                const result = await axios.get('/api/event/all');
-                setEvents(result.data.events);
-                console.log(result.data.events)
-            } catch (error) {
-                console.error("Ошибка при получении событий:", error);
-            }
-        };
-        getEvents(); 
-    }, []);
+        const month = today.getMonth() + 1; // 1–12
+        const day = today.getDate();
+        
+        const formattedMonth = String(month).padStart(2, '0'); // Добавляем ведущий ноль
+        const formattedDay = String(day).padStart(2, '0'); // Добавляем ведущий ноль
+        const formattedFromDate = `${year}-${formattedMonth}-${formattedDay}`; // Форматируем дату
+        setFromDate(formattedFromDate);
 
+        setEventsByDate(year, month, day);
+    }, []);
 
     // для выпадающего списка, чтобы он закрывался при нажатии мимо него
     useEffect(() => {
@@ -55,6 +94,7 @@ function Mainpage() {
         return () => document.removeEventListener('click', handleClick);
       }, []);
 
+    
     return (
         <div className={styles.mainContainer}>
             <section className={styles.topSection}>
@@ -62,8 +102,8 @@ function Mainpage() {
                     <span className={styles.logo}>StudentFlow</span>
                     <a href="/login">Вход</a>
                     <a href="/register">Регистрация</a>
-                    <input placeholder='Поиск' />
-                    <button className={styles.searchBtn}>Искать</button>
+                    {/* <input placeholder='Поиск' /> */}
+                    {/* <button className={styles.searchBtn}>Искать</button> */}
                     
                     <img 
                         className={styles.islandSearchBtn} 
@@ -92,26 +132,12 @@ function Mainpage() {
                         Следить за важными мероприятиями, не пропускать интересные мастер-классы и студенческие активности
                     </p>
                 </div>
-                {/* <h2>Предстоящие события</h2>
-                <div className={styles.eventsBlock}>
-                    
-                    <Eventcard 
-                        description="Хочешь узнать, как создают роботов и нейросети? Приходи на фестиваль 8БИТ"
-                        date="04.03"
-                        img={pic1}
-                        evtId="1"/>
-                    <Eventcard 
-                        description="Хочешь узнать, как создают роботов и нейросети? Приходи на фестиваль 8БИТ"
-                        date="04.03"
-                        img={pic1}
-                        evtId="1"/>
-                </div> */}
                 <h2>События по дате</h2>
                 <div className={styles.dateEventsBlock}>
                     <div className={styles.chooseDateBlock}>
                         <div className={styles.chooseDateInputGroup}>
                             <div className={styles.leftPart}>
-                                <label>С какого дня</label>
+                                <label>{isOnlyOneDay ? 'В какой день' : 'С какого дня'}</label>
                                 <input 
                                     type="date" 
                                     value={fromDate} 
@@ -130,37 +156,35 @@ function Mainpage() {
                                 </div>
                             </div>
                         </div>
-                        <button>Искать</button>
+                        <label>Ключевые слова</label>
+                        <input 
+                            type='text' 
+                            className={styles.searchInput}
+                            onChange={(e) => setSearchKeys(e.target.value)}
+                            value={searchKeys}/>
+                        <button onClick={() => searchClickHandler()}>Искать</button>
                     </div>
                 </div>
                 <div className={styles.searchedEventsBlock}>
-                    {
-                        events.map((item, index) => (
-                            <Eventcard key={index} 
-                            title={item.title}
-                            description={item.description}
-                            date={item.date}
-                            img_url={item.img_url}
-                            evtId={item.id}
-                            />
-                        ))
-                    }
+                    <Carousel visibleItems={3}>
+                        {events.map((item) => (
+                                <Eventcard 
+                                key={item.id}
+                                title={item.title}
+                                description={item.description}
+                                date={item.date}
+                                img_url={item.img_url}
+                                evtId={item.id}
+                                />
+                        ))}
+                    </Carousel>
+
                     <i>
                     {events.length === 0 ? 'Мероприятия не найдены...' : ''}
                     </i>
-                    {/* <Eventcard 
-                        description="Хочешь узнать, как создают роботов и нейросети? Приходи на фестиваль 8БИТ"
-                        date="04.03"
-                        img={pic1}
-                        evtId="1"/>
-                    <Eventcard 
-                        description="Хочешь узнать, как создают роботов и нейросети? Приходи на фестиваль 8БИТ"
-                        date="04.03"
-                        img={pic1}
-                        evtId="1"/> */}
                 </div>
             </section>
-            <section className={styles.eventsSearch}>
+            {/* <section className={styles.eventsSearch}>
                 <div className={styles.searchBlock}>
                     <h2>Поиск новостей</h2>
                     <p className={styles.searchSlogan}>Найди себя быстрее</p>
@@ -172,7 +196,7 @@ function Mainpage() {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> */}
         </div>
     )
 }
