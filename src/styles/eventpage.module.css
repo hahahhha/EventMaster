@@ -30,14 +30,17 @@
     font-size: 16px;
 }
 
-.eventPage .notify .bottom {
+/* .eventPage .notify .bottom {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-}
+} */
 
 .eventPage .notify .badge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 5px 18px;
     background-color: #3AAFA9;
     border-radius: 30px;
@@ -68,4 +71,24 @@
     margin-top: 20px;
     padding-top: 20px;
     border-top: 1.1px solid #3AAFA9;
+}
+
+.eventPage .notify .bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.eventPage .notify .bottom .row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+}
+
+.eventPage h1 {
+    font-size: 42px;
+    /* text-decoration: underline;
+    text-underline-offset: 10px;
+    text-decoration-thickness: 1.1px;
+    text-decoration-color: #3AAFA9; */
 }

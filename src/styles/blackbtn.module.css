@@ -20,3 +20,22 @@
     transform: scale(0.99);
     background-color: black;
 }
+
+/* Неактивное состояние */
+.blackButton.unactive {
+    background-color: rgb(100, 100, 100); 
+    color: rgba(255, 255, 255, 0.7);
+    cursor: not-allowed;
+    transform: none !important; 
+}
+
+.blackButton.unactive:hover {
+    background-color: rgb(100, 100, 100); 
+    transform: none; 
+}
+
+
+.blackButton.unactive:active {
+    background-color: rgb(100, 100, 100); 
+    transform: none; 
+}

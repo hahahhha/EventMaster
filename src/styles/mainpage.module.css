@@ -316,3 +316,10 @@
 .searchInput::placeholder {
     color: #aaa;
 }
+
+
+.checkboxWithLabel label {
+    display: inline;
+    font-size: 14px;
+    color: grey;
+}

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import styles from '../styles/eventpage.module.css';
 import axios from 'axios';
 import { API_URL } from '../confing';
 import Header from './Header';
 import Blackbtn from './Blackbtn';
+
+import checkIsAuthorized from '../functions/checkIsAuthorized';
 
 function Eventpage() {
   const [searchParams] = useSearchParams();
@@ -12,7 +14,52 @@ function Eventpage() {
   const [eventData, setEventData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isUserRegistered, setIsUserRegistered] = useState(false);
 
+  const navigate = useNavigate();
+
+  // проверка, зарегистрирован ли пользователь на мероприятие
+  useEffect(() => {
+    const getIsUserRegistered = async () => {
+      try {
+        const response = await axios.get('/api/user/events', {withCredentials: true});
+        const registeredEvents = response.data.events;
+        console.log(registeredEvents);
+        if (registeredEvents.some(evt => evt.id == eventId)) {
+          setIsUserRegistered(true);
+        }
+      } catch (error) {
+        console.log('ошибка при получении событий, на которые зарегистрирован пользователь');
+        console.log(error);
+      }
+    }
+
+    getIsUserRegistered();
+  }, []);
+
+  const subscribeBtnHandler = async () => {
+    if (isUserRegistered)
+      return;
+    const isAuthed = await checkIsAuthorized();
+    console.log(isAuthed)
+    if (!isAuthed) {
+      const redirectUrl = `/event?id=${eventId}`;
+      navigate(`/login?redir=${encodeURIComponent(redirectUrl)}`);
+      return;
+    }
+    try {
+      const response = await axios.post('/api/user/regUserOnEvent', {
+        event_id: eventId
+      }, {withCredentials: true});
+      setIsUserRegistered(true);
+      eventData.attendees++;
+    } catch (error) {
+      console.log('не удалось зарегистрировать пользователя на мероприятие');
+      console.log(error);
+    }
+  }
+
+  // получение данных о мероприятии
   useEffect(() => {
     const getData = async () => {
       try {
@@ -20,6 +67,7 @@ function Eventpage() {
           withCredentials: true
         });
         setEventData(response.data.event);
+        console.log(response.data.event);
       } catch (err) {
         console.error(err);
         setError('Не удалось загрузить данные мероприятия');
@@ -45,7 +93,7 @@ function Eventpage() {
 
   return (
     <div className={styles.eventPage}>
-      <Header>StudentFlow</Header>
+      <Header><a href="/main" style={{textDecoration: "none", color: "white"}}>StudentFlow</a></Header>
       <div 
         className={styles.container}
         style={{
@@ -67,14 +115,20 @@ function Eventpage() {
             </p>
           </div>
           <div className={styles.bottom}>
-            <Blackbtn>Записаться</Blackbtn>
-            <span className={styles.badge}>
-              Участников: 0
-            </span>
+            <div className={styles.row}>
+              <Blackbtn onClick={subscribeBtnHandler} isButtonActive={!isUserRegistered}>Записаться</Blackbtn>
+              <span className={styles.badge}>
+                Участников: {eventData.attendees}
+              </span>
+            </div>
+            <div className={styles.row}>
+              <span>{isUserRegistered ? 'Вы зарегистрированы на это мероприятие' : ""}</span>
+            </div>
           </div>
         </div>
       </div>
       <div className={`${styles.mainContainer}`}>
+        <h1>{eventData.title}</h1>
         <h2>Что тебя ждёт?</h2>
         <p>{eventData.description}</p>
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import styles from '../styles/loginpage.module.css';
 import axios from 'axios';
 import Header from './Header';
@@ -8,6 +8,9 @@ export default function Loginpage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isError, setIsError] = useState(false);
+  const [searchParams] = useSearchParams();
+  const redirectUrl = searchParams.get('redir') || '/main';
+
   const navigate = useNavigate();
 
   const handler = async (e) => {
@@ -17,7 +20,7 @@ export default function Loginpage() {
         email, password
       }, {withCredentials: true});
       setIsError(false);
-      navigate('/main');
+      navigate(redirectUrl);
     } catch (error) {
       setIsError(true);
       console.log(222);

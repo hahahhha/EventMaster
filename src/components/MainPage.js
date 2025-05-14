@@ -9,8 +9,6 @@ import Eventcard from './Eventcard'
 import pic1 from '../assets/event1.jpg';
 import accLogo from '../assets/account_img.svg'
 
-import Carousel from './Carousel'
-
 function Mainpage() {
     const navigate = useNavigate();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -19,6 +17,7 @@ function Mainpage() {
     const [isOnlyOneDay, setIsOnlyOneDay] = useState(true);
     const [toDate, setToDate] = useState('');
     const [searchKeys, setSearchKeys] = useState('');
+    const [isDateConsider, setIsDateConsider] = useState(false);
 
     const setEventsBetweenDates = async (y1, m1, d1, y2, m2, d2) => {
         console.log(y1, m1, d1, y2, m2, d2);
@@ -48,11 +47,33 @@ function Mainpage() {
         }
     };
 
+    const setAllEvents = async () => {
+        try {
+            const response = await axios.get('/api/event/all');
+            setEvents(response.data.events);
+            return response.data.events;
+        } catch (error) {
+            console.log('Не удалось получить все события');
+            console.log(error);
+        }
+    }
+
     const searchClickHandler = async () => {
+        
         const splittedFrom = fromDate.split('-').map((item) => parseInt(item));
         const splittedTo = toDate.split('-').map((item) => parseInt(item));
-        const evts = await setEventsBetweenDates(...splittedFrom, ...splittedTo);
+        let evts = []
+        if (isDateConsider) {
+            if (!isOnlyOneDay) {
+                evts = await setEventsBetweenDates(...splittedFrom, ...splittedTo);
+            } else {
+                evts = await setEventsByDate(...splittedFrom);
+            }
+        } else {
+            evts = await setAllEvents();
+        }
         
+        if (evts.length === 0) return;
         if (searchKeys.trim().length > 0) {
             const searchTerms = searchKeys.toLowerCase().split(/\s+/).filter(term => term);
             setEvents(evts.filter(evt => {
@@ -162,27 +183,33 @@ function Mainpage() {
                             className={styles.searchInput}
                             onChange={(e) => setSearchKeys(e.target.value)}
                             value={searchKeys}/>
+                        <div className={styles.checkboxWithLabel}>
+                            <input 
+                                type='checkbox' 
+                                checked={!isDateConsider} 
+                                value={!isDateConsider}
+                                onChange={() => {setIsDateConsider(!isDateConsider)}}/>
+                            <label>Не учитывать даты</label>
+                        </div>
                         <button onClick={() => searchClickHandler()}>Искать</button>
                     </div>
                 </div>
                 <div className={styles.searchedEventsBlock}>
-                    <Carousel visibleItems={3}>
-                        {events.map((item) => (
-                                <Eventcard 
-                                key={item.id}
-                                title={item.title}
-                                description={item.description}
-                                date={item.date}
-                                img_url={item.img_url}
-                                evtId={item.id}
-                                />
-                        ))}
-                    </Carousel>
-
-                    <i>
-                    {events.length === 0 ? 'Мероприятия не найдены...' : ''}
-                    </i>
+                    {events.map((item) => (
+                            <Eventcard 
+                            key={item.id}
+                            title={item.title}
+                            description={item.description}
+                            date={item.date}
+                            img_url={item.img_url}
+                            evtId={item.id}
+                            />
+                    ))}
+                    
                 </div>
+                <p style={{textAlign: "center", paddingBottom: "0px"}}>
+                    <i>{events.length === 0 ? 'Мероприятия не найдены...' : ''}</i>
+                </p>
             </section>
             {/* <section className={styles.eventsSearch}>
                 <div className={styles.searchBlock}>

@@ -7,7 +7,6 @@ function shortString(text) {
         return text;
     }
     const res = text.substring(0, 100) + "...";
-    console.log(res);
     return res;
 }
 
