@@ -6,7 +6,6 @@ import styles from '../styles/mainpage.module.css'
 
 import Eventcard from './Eventcard'
 
-import pic1 from '../assets/event1.jpg';
 import accLogo from '../assets/account_img.svg'
 
 function Mainpage() {
@@ -17,7 +16,7 @@ function Mainpage() {
     const [isOnlyOneDay, setIsOnlyOneDay] = useState(true);
     const [toDate, setToDate] = useState('');
     const [searchKeys, setSearchKeys] = useState('');
-    const [isDateConsider, setIsDateConsider] = useState(false);
+    const [isDateConsider, setIsDateConsider] = useState(true);
 
     const setEventsBetweenDates = async (y1, m1, d1, y2, m2, d2) => {
         console.log(y1, m1, d1, y2, m2, d2);

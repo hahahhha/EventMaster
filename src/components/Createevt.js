@@ -24,7 +24,8 @@ function Createevt() {
       try {
         const response = await axios.get('/api/auth/checkAuth', {withCredentials: true});
         if (!response.data.isAuthenticated) {
-          navigate('/login');
+          const redirectUrl = `/create-evt`;
+          navigate(`/login?redir=${encodeURIComponent(redirectUrl)}`);
         }
       } catch (error) {
         navigate('/login');

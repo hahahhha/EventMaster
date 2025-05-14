@@ -12,8 +12,9 @@ function RegisterUserPage() {
     const [birthDate, setBirthDate] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [academicGroup, setAcademicGroup] = useState("");
 
-    const fields = [lastName, firstName, email, birthDate, password, confirmPassword];
+    const fields = [lastName, firstName, email, birthDate, password, confirmPassword, academicGroup];
 
     const handler = async (evt) => {
         evt.preventDefault();
@@ -37,7 +38,8 @@ function RegisterUserPage() {
                 email,
                 password,
                 role: "user",
-                birthDate
+                birth_date: birthDate,
+                academic_group: academicGroup
             }, { withCredentials:true });
             
             
@@ -49,6 +51,9 @@ function RegisterUserPage() {
             setBirthDate("");
             setPassword("");
             setConfirmPassword("");
+            setAcademicGroup("");
+
+            setStatus("Вы зарегистрировались")
         } catch (error) {
             if (error.response.status === 409) {
                 setStatus("Пользователь с таким Email уже существует")
@@ -90,6 +95,7 @@ function RegisterUserPage() {
                                 value={middleName}
                                 onChange={(e) => setMiddleName(e.target.value)}
                             />
+                            
                         </div>
                         <div className={styles.rightFormPart}>
                             <input 
@@ -113,6 +119,15 @@ function RegisterUserPage() {
                         </div>
                     </div>
                     <div className={styles.formBottom}>
+                        <div>
+                            <label>Группа (для студентов)</label>
+                            <input
+                                type="text"
+                                placeholder='Группа'
+                                value={academicGroup}
+                                onChange={(e) => setAcademicGroup(e.target.value)}
+                            />
+                        </div>
                         <div>
                             <label>Дата рождения</label>
                             <input 

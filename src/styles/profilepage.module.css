@@ -1,0 +1,181 @@
+.profilePage {
+    font-family: "Poppins", "Inter", sans-serif;
+    
+}
+
+.profilePage .mainContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;    
+    height: 90vh;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(243, 244, 246);;
+}
+
+.profilePage .mainContainer .mainBlock {
+    width: 70%;
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.2);
+    padding: 40px;
+    border-radius: 16px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.profilePage .mainContainer .mainBlock h1 {
+    text-align: center;
+    margin: 0 0 16px 0;
+}
+
+.profilePage .mainContainer .leftPart, .rightPart {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+}
+
+.profilePage .mainContainer .rightPart input {
+    width: 90%;
+}
+
+.profilePage label {
+    display: block;
+}
+
+.profilePage .nameBlock, .emailBlock, .fullInfoBlock, .visitedEventsBlock {
+    background-color: #DFF2F0;
+    /* width: fit-content; */
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.profilePage .circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background-color: white;
+}
+
+.profilePage .nameBlock {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+}
+
+.profilePage .nameBlock .fullName {
+    font-weight: 500;
+    font-size: 18.72px;
+    line-height: 100%;
+}
+
+.profilePage .nameBlock .email {
+    font-weight: 400;
+    font-size: 14.98px;
+    line-height: 100%;
+    letter-spacing: 0px;
+    color: rgb(85, 85, 85);
+}
+
+.profilePage .nameBlock .shortInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    gap: 6px;
+}
+
+.profilePage .emailBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.profilePage input {
+    width: 65%;
+    padding: 12px 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #333;
+    background-color: white;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+    margin-left: -1.5px;
+}
+
+.profilePage input:focus {
+    outline: none;
+    border-color: #4a90e2;
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+.profilePage input:hover {
+    border-color: #b3b3b3;
+}
+
+.profilePage .emailBlock .email {
+    font-weight: 500;
+    font-size: 16.85px;
+    line-height: 100%;
+    letter-spacing: 0px;
+}
+
+.profilePage button {
+    width: auto;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    background-color: #000;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profilePage button:hover {
+    background-color: #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.profilePage button:active {
+    background-color: #111;
+    transform: translateY(1px);
+}
+
+.profilePage button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.profilePage .row1 {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.profilePage .col1 {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.visitedEventsBlock .title {
+    font-weight: 500;
+}
+
+.visitedEventsBlock a {
+    display: block;
+    margin: 0;
+    margin-top: 8px;
+    color: rgb(61, 61, 61);
+    font-style: italic;
+}

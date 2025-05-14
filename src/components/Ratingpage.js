@@ -1,12 +1,13 @@
 import React from 'react';
 import styles from '../styles/ratingpage.module.css';
+import Header from './Header';
 
 function Ratingpage() {
   return (
-    <>
-      <div className={styles.header}>
-        <span>StudentFlow</span>
-      </div>
+    <div className={styles.ratingPage}>
+      <Header>
+        <a href="/main" style={{textDecoration: "none", color: "white"}}>StudentFlow</a>
+      </Header>
       <div className={styles.main}>
         <h1>Рейтинг участников</h1>
         <table>
@@ -32,7 +33,7 @@ function Ratingpage() {
         </table>
 
       </div>
-    </>
+    </div>
   )
 }
 

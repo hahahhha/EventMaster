@@ -110,6 +110,8 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+    font-size: 24px;
+    font-weight: 700;
 }
 
 .mainContainer .error {

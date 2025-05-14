@@ -30,7 +30,7 @@ export default function Loginpage() {
   return (
     <div className={styles.fullHeightContainer}>
       <Header>
-        StudentFlow
+        <a href="/main" style={{textDecoration: "none", color: "white"}}>StudentFlow</a>
       </Header>
       
       <div className={styles.mainContainer}>

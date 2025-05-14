@@ -11,6 +11,7 @@ import RegisterUserPage from './components/RegisterUserPage';
 import Loginpagenob from './components/WelcomePage';
 import Mainpage from './components/MainPage';
 import Eventpage from './components/Eventpage';
+import Profilepage from './components/Profilepage';
 
 import axios from 'axios';
 import { API_URL } from './confing';
@@ -44,17 +45,17 @@ const router = createBrowserRouter([
     path: "/main",
     element: <Mainpage />
   },
-  {
-    path: "/card",
-    element: <Eventcard 
-      title="Test title" 
-      description="Test description lorem impsum" 
-      date="27.04.2006" 
-      img={testPic}/>
-  },
+  // {
+  //   path: "/card",
+  //   element: <Eventcard 
+  //     title="Test title" 
+  //     description="Test description lorem impsum" 
+  //     date="27.04.2006" 
+  //     img={testPic}/>
+  // },
   {
     path: "/profile",
-    element: <h1 style={{color: "black"}}>Тут будет профиль</h1>
+    element: <Profilepage />
   },
   {
     path: "/forgotpassword",
