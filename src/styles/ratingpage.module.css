@@ -45,6 +45,10 @@ body {
     text-align: center;
 }
 
+.ratingPage .active {
+    background-color: #88b0ae;
+}
+
 .ratingPage th {
     background-color: #f2f2f2;
     font-weight: bold;

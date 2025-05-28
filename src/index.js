@@ -23,7 +23,7 @@ import Eventcard from './components/Eventcard';
 // App.js или index.js
 
 import testPic from './assets/event1.jpg'
-import Ratingpage from './components/Ratingpage';
+import Ratingpage from './components/RatingPage/Ratingpage';
 import Createevt from './components/Createevt';
 
 
