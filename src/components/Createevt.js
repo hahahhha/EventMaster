@@ -150,7 +150,6 @@ function Createevt() {
                     <img 
                       src={URL.createObjectURL(image)} 
                       alt="Preview" 
-                      style={{ maxWidth: '100px', maxHeight: '100px' }}
                     />
                   </div>
                 )}

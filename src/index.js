@@ -15,10 +15,7 @@ import Profilepage from './components/Profilepage';
 
 import axios from 'axios';
 import { API_URL } from './confing';
-import Eventcard from './components/Eventcard';
 
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// без бутстрапа
 
 // App.js или index.js
 
@@ -45,14 +42,6 @@ const router = createBrowserRouter([
     path: "/main",
     element: <Mainpage />
   },
-  // {
-  //   path: "/card",
-  //   element: <Eventcard 
-  //     title="Test title" 
-  //     description="Test description lorem impsum" 
-  //     date="27.04.2006" 
-  //     img={testPic}/>
-  // },
   {
     path: "/profile",
     element: <Profilepage />

@@ -102,3 +102,59 @@ body {
 .evtBlock .formRow .rightPart input {
     width: 80%;
 }
+
+.evtBlock .imagePreview p {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.createEvt .bottomArea button:active {
+    transform: translateY(2px);
+}
+
+@media (max-width: 1000px) {
+    .slogan {
+        display: none;
+    }
+
+    .evtBlock form .leftPart, .rightPart {
+        width: 100%;
+    }
+
+    .evtBlock form input {
+        width: auto;
+    }
+
+    .evtBlock form .formRow {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+    }
+
+    .evtBlock form {
+        min-width: 0;
+        width: 75vw;
+        border: 2px solid black;
+        margin-top: 16px;
+    }
+
+    .createEvt .evtBlock form .rightPart {
+        align-items: start;
+    }
+
+    .createEvt .evtBlock form .rightPart label {
+        align-self: start;
+    }
+
+    .createEvt .bottomArea button {
+        font-size: 18px;
+        font-weight: 500;
+        border-radius: 12px;
+        transition: 250ms ease;
+    }
+
+    .createEvt .imagePreview img {
+        width: 80%;
+        height: auto;
+    }
+}
