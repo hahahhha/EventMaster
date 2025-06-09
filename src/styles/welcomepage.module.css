@@ -11,11 +11,7 @@ body {
     justify-content: start;
     align-items: center;
     font-family: 'Inter', sans-serif;
-
-    background-image: url('../assets/welcome-page-img.png');
-    background-repeat: no-repeat;
-    background-position: right center;
-    background-size: 800px;
+    flex-direction: row;
 }
 
 .logo {
@@ -29,7 +25,12 @@ body {
 
 .sloganContainer {
     height: auto;
-    padding: 0 120px;
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    padding-left: 70px;
 }
 
 .sloganContainer h1 {
@@ -61,4 +62,44 @@ body {
 
 .sloganContainer button:active {
     transform: scale(0.99);
+}
+
+.imgContainer {
+    height: 100%;
+    width: 50vw;
+    background-image: url('../assets/welcome-page-img.png');
+    background-repeat: no-repeat;
+    background-position: 80% 50%;
+    background-size: 100% auto;
+    
+}
+
+@media (max-width: 1000px) {
+    .imgContainer {
+        background-image: none;
+        width: 0;
+        height:  0;
+    }
+
+    .sloganContainer {
+        width: 100vw;
+        align-items: center;
+        justify-content: start;
+        padding: 0;
+        /* align-self: center; */
+    }
+
+    .sloganContainer h1 {
+        text-align: center;
+    }
+
+}
+
+@media (max-width: 520px) {
+    .logo {
+        font-size: 60px;
+    }
+    .sloganContainer h1 {
+        font-size: 45px;
+    }
 }

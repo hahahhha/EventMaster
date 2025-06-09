@@ -1,0 +1,69 @@
+.commentInputBlock {
+    display: flex;
+    width: fit-content;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.commentInputBlock .accLogo {
+    width: 55px;
+    height: 55px;
+    margin-right: 15px;
+}
+
+.commentInputBlock textarea {
+    border: none;
+    border-bottom: 2px solid #17242C;
+    margin-bottom: 10px;
+    font-size: 16px;
+    width: 45vw;
+    resize: none;
+    outline: none;
+    padding-bottom: 0;
+    vertical-align: bottom;
+    font-family: 'Inter';
+}
+
+.commentInputBlock .buttonsBlock {
+    display: flex;
+    margin-left: 70px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+
+.commentInputBlock .makeCommentButton {
+    border: none;
+    outline: none;
+    background-color: #1c1c1c;
+    color: white;
+    font-family: 'Raleway', 'Inter', sans-serif;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 7px;
+    font-size: 14px;
+    cursor: pointer;
+    -webkit-box-shadow: 0px 0px 20px -10px rgba(74, 74, 89, 1);
+    -moz-box-shadow: 0px 0px 20px -10px rgba(74, 74, 89, 1);
+    box-shadow: 0px 0px 20px -10px rgba(74, 74, 89, 1);
+    transition: 100ms ease-in;
+}
+
+.commentInputBlock .makeCommentButton:hover {
+    transform: translateY(-0.9px);
+    background-color: #2a2a2a;
+}
+
+.commentInputBlock .makeCommentButton:active {
+    transform: translateY(0.5px);
+}
+
+.commentInputBlock .cancelButton {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'Raleway', 'Inter', sans-serif;
+}

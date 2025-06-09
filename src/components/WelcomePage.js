@@ -33,6 +33,7 @@ function Loginpagenob() {
                 <h1>Учись,<br></br> общайся, <br></br>развивайся!</h1>
                 <button onClick={btnHandler}>Начать</button>
             </div>
+            <div className={styles.imgContainer}></div>
         </div>
     )
 }

@@ -108,6 +108,11 @@
 }
 .islandSearchBtn {
     width: 40px;
+    height: 40px;
+    background-image: url('../assets/account_img.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 /* Конец стилей верхней секции */
@@ -322,4 +327,30 @@
     display: inline;
     font-size: 14px;
     color: grey;
+}
+
+
+
+@media (max-width: 650px) {
+    .islandSearchBtn {
+        width: 40px;
+        height: 40px;
+        background-image: url('../assets/menu_img.webp');
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+
+    .eventsSection {
+        font-family: "Raleway", sans-serif;
+    }
+
+    .slogan {
+        font-size: 40px;
+        text-decoration: none;
+    }
+
+    .topSectionTextblock {
+        padding: 0 10px;
+    }
 }

@@ -10,8 +10,10 @@ import Loginpage from './components/Loginpage';
 import RegisterUserPage from './components/RegisterUserPage';
 import Loginpagenob from './components/WelcomePage';
 import Mainpage from './components/MainPage';
-import Eventpage from './components/Eventpage';
+import Eventpage from './components/EventPage/Eventpage';
 import Profilepage from './components/Profilepage';
+
+import Comment from './components/EventPage/Comment';
 
 import axios from 'axios';
 import { API_URL } from './confing';
@@ -61,6 +63,10 @@ const router = createBrowserRouter([
   {
     path: "create-evt",
     element: <Createevt />
+  },
+  {
+    path: "comment",
+    element: <Comment text="Тест" author="Я" likes={5} dislikes={0} />
   }
 ]);
 

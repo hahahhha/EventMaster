@@ -5,6 +5,10 @@
     align-items: end;
 }
 
+.eventPage {
+    font-family: 'Inter', sans-serif;
+}
+
 .eventPage .notify {
     width: 400px;
     background-color: #DFF2F0;
@@ -71,6 +75,9 @@
     margin-top: 20px;
     padding-top: 20px;
     border-top: 1.1px solid #3AAFA9;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .eventPage .notify .bottom {
@@ -91,4 +98,31 @@
     text-underline-offset: 10px;
     text-decoration-thickness: 1.1px;
     text-decoration-color: #3AAFA9; */
+}
+
+
+@media (max-width: 600px) {
+    .eventPage .notify p{
+        display: none;
+    }
+    .eventPage .notify {
+        width: 80vw;
+        text-align: center;
+        margin: 0 auto;
+        margin-bottom: 20px;
+    }
+    .eventPage .mainContainer {
+        padding: 18px;
+        margin: 0;
+    }
+
+    .eventPage .mainContainer h1 {
+        border-bottom: 1px solid #3AAFA9;
+        padding-bottom: 20px;
+    }
+
+    .eventPage .mainContainer p {
+        width: auto;
+        max-width: 90vw;
+    }
 }

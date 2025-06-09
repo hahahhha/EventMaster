@@ -17,6 +17,7 @@ function Mainpage() {
     const [toDate, setToDate] = useState('');
     const [searchKeys, setSearchKeys] = useState('');
     const [isDateConsider, setIsDateConsider] = useState(true);
+    const screenWidth = window.innerWidth;
 
     const setEventsBetweenDates = async (y1, m1, d1, y2, m2, d2) => {
         console.log(y1, m1, d1, y2, m2, d2);
@@ -120,17 +121,18 @@ function Mainpage() {
             <section className={styles.topSection}>
                 <div className={styles.island}>
                     <span className={styles.logo}>StudentFlow</span>
-                    <a href="/login">Вход</a>
-                    <a href="/register">Регистрация</a>
+                    {screenWidth > 650 ? <a href="/login">Вход</a> : ``}
+                    {screenWidth > 650 ? <a href="/register">Регистрация</a> : ``}
+                    
                     {/* <input placeholder='Поиск' /> */}
                     {/* <button className={styles.searchBtn}>Искать</button> */}
                     
-                    <img 
+                    <div
                         className={styles.islandSearchBtn} 
                         src={accLogo}
                         onClick={() => {setIsDropdownOpen(!isDropdownOpen); console.log(isDropdownOpen)}} // Важно: стрелочная функция
                         alt="Dropdown trigger"
-                    />
+                    ></div>
                     
                     {isDropdownOpen && (
                         <div className={styles.dropdown}>
@@ -138,6 +140,17 @@ function Mainpage() {
                                 <li><a href="/profile">Профиль</a></li>
                                 <li><a href="/create-evt">Создать мероприятие</a></li>
                                 <li><a href="/rating">Рейтинг</a></li>
+                                {screenWidth <= 650 ? 
+                                    <li><a href="/login">Войти</a></li>
+                                    :
+                                    ``
+                                }
+                                {screenWidth <= 650 ? 
+                                    <li><a href="/register">Регистрация</a></li>
+                                    :
+                                    ``
+                                }
+                                
                             </ul>
                         </div>
                     )}

@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import styles from '../styles/eventpage.module.css';
+import styles from '../../styles/eventpage.module.css';
 import axios from 'axios';
-import { API_URL } from '../confing';
-import Header from './Header';
-import Blackbtn from './Blackbtn';
+import { API_URL } from '../../confing';
+import Header from '../Header';
+import Blackbtn from '../Blackbtn'
+import Comment from './Comment';
+import CommentInput from './CommentInput';
 
-import checkIsAuthorized from '../functions/checkIsAuthorized';
+import checkIsAuthorized from '../../functions/checkIsAuthorized';
 
 function Eventpage() {
   const [searchParams] = useSearchParams();
@@ -16,15 +18,17 @@ function Eventpage() {
   const [error, setError] = useState(null);
   const [isUserRegistered, setIsUserRegistered] = useState(false);
 
+  const [comments, setComments] = useState([]);
+
   const navigate = useNavigate();
+  const redirectUrl = `/event?id=${eventId}`;
 
   // проверка, зарегистрирован ли пользователь на мероприятие
-  useEffect(() => {
-    const getIsUserRegistered = async () => {
+  
+  const getIsUserRegistered = async () => {
       try {
         const response = await axios.get('/api/user/events', {withCredentials: true});
         const registeredEvents = response.data.events;
-        console.log(registeredEvents);
         if (registeredEvents.some(evt => evt.id == eventId)) {
           setIsUserRegistered(true);
         }
@@ -34,6 +38,16 @@ function Eventpage() {
       }
     }
 
+  // получение комментов
+  const getEventComments = async () => {
+    const response = await axios.get(`/api/event/comments?id=${eventId}`);
+    setComments(response.data.comments);
+    console.log(response.data.comments);
+  }
+
+  useEffect(() => {
+    
+    getEventComments();
     getIsUserRegistered();
   }, []);
 
@@ -41,9 +55,7 @@ function Eventpage() {
     if (isUserRegistered)
       return;
     const isAuthed = await checkIsAuthorized();
-    console.log(isAuthed)
     if (!isAuthed) {
-      const redirectUrl = `/event?id=${eventId}`;
       navigate(`/login?redir=${encodeURIComponent(redirectUrl)}`);
       return;
     }
@@ -67,7 +79,6 @@ function Eventpage() {
           withCredentials: true
         });
         setEventData(response.data.event);
-        console.log(response.data.event);
       } catch (err) {
         console.error(err);
         setError('Не удалось загрузить данные мероприятия');
@@ -133,17 +144,28 @@ function Eventpage() {
         <p>{eventData.description}</p>
 
         <div className={styles.commentsBlock}>
-          <span>1 комментарий (тут будут комментарии)</span>
-          
-            <select 
-              // onChange={(e) => onChange(e.target.value)}
-              className={styles.sortSelect}
-            >
+          <div className={styles.commentsBlockRow}>
+            <span>1 комментарий (тут будут комментарии)</span>
+            <select className={styles.sortSelect}>
               <option value="newest">Сначала новые</option>
               <option value="oldest">Сначала старые</option>
               <option value="name_asc">По имени (А-Я)</option>
               <option value="name_desc">По имени (Я-А)</option>
             </select>
+          </div>
+          <CommentInput loginRedirUrl={redirectUrl} eventId={eventId} updateComments={getEventComments}/>
+          <div className={styles.commentsBlockRow}>
+          {
+            comments.map((item, index) => (
+              <Comment 
+                key={`${item.user_id}_${index}`}
+                text={item.text} 
+                author={`${item.name} ${item.surname}`}
+                />
+            )
+          )
+          }
+          </div>
         </div>
       </div>
       
