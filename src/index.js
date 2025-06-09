@@ -12,6 +12,7 @@ import Loginpagenob from './components/WelcomePage';
 import Mainpage from './components/MainPage';
 import Eventpage from './components/EventPage/Eventpage';
 import Profilepage from './components/Profilepage';
+import Adminpage from './components/AdminPage/Adminpage';
 
 import Comment from './components/EventPage/Comment';
 
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
   {
     path: "comment",
     element: <Comment text="Тест" author="Я" likes={5} dislikes={0} />
+  },
+  {
+    path: "/admin",
+    element: <Adminpage />
   }
 ]);
 
