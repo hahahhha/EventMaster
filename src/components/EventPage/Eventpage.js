@@ -20,6 +20,9 @@ function Eventpage() {
 
   const [comments, setComments] = useState([]);
 
+  const [replyTo, setReplyTo] = useState('');
+  const [replyId, setReplyId] = useState();
+
   const navigate = useNavigate();
   const redirectUrl = `/event?id=${eventId}`;
 
@@ -148,12 +151,24 @@ function Eventpage() {
             <span>1 комментарий (тут будут комментарии)</span>
             <select className={styles.sortSelect}>
               <option value="newest">Сначала новые</option>
-              <option value="oldest">Сначала старые</option>
-              <option value="name_asc">По имени (А-Я)</option>
-              <option value="name_desc">По имени (Я-А)</option>
+              <option value="oldest">Сначала популярные</option>
             </select>
           </div>
-          <CommentInput loginRedirUrl={redirectUrl} eventId={eventId} updateComments={getEventComments}/>
+          <CommentInput 
+            loginRedirUrl={redirectUrl} 
+            eventId={eventId} 
+            updateComments={getEventComments}
+            replyToName={replyTo}
+            replyToId={replyId}
+            onCommentAdded={() => {
+              setReplyId(null);
+              setReplyTo(null);
+            }}
+            onCancelButtonClick={() => {
+              setReplyId(null);
+              setReplyTo(null);
+            }}
+          />
           <div className={styles.commentsBlockRow}>
           {
             comments.map((item, index) => (
@@ -161,7 +176,12 @@ function Eventpage() {
                 key={`${item.user_id}_${index}`}
                 text={item.text} 
                 author={`${item.name} ${item.surname}`}
-                />
+                onAnsBtnClick={() => {
+                  setReplyTo(`${item.name} ${item.surname}`);
+                  setReplyId(item.comment_id);
+                  console.log(`${item.name} ${item.surname}`, item.user_id)
+                }}
+              />
             )
           )
           }

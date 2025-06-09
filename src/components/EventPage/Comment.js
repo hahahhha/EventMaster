@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../../styles/comment.module.css';
 
-function Comment({ text, author, likes, dislikes, createdAt}) {
+function Comment({ text, author, likes, dislikes, createdAt, onAnsBtnClick}) {
 
   return (
     <div className={styles.comment}>
@@ -15,7 +15,7 @@ function Comment({ text, author, likes, dislikes, createdAt}) {
         <div className={`${styles.row} ${styles.bottomRow}`}>
             <button className={styles.likeButton}></button>
             <button className={styles.dislikeButton}></button>
-            <button className={styles.answerButton}>Ответить</button>
+            <button className={styles.answerButton} onClick={onAnsBtnClick}>Ответить</button>
         </div>
     </div>
   )

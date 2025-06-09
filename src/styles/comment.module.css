@@ -49,7 +49,7 @@
 .comment .bottomRow {
     margin-left: 70px;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
 }
 

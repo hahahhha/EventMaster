@@ -1,13 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '../../styles/commentinput.module.css';
 import accLogo from '../../assets/comment-acc.svg';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-function CommentInput({ loginRedirUrl, eventId, updateComments }) {
+function CommentInput({ loginRedirUrl, eventId, updateComments, replyToName, replyToId, onCommentAdded, onCancelButtonClick }) {
   const [isInputActive, setIsInputActive] = useState(false);
   const [commentText, setCommentText] = useState('');
+
+
   const navigate = useNavigate();
+
+   useEffect(() => {
+    if (replyToName) {
+      setCommentText(`${replyToName}, ${commentText}`);
+      setIsInputActive(true);
+    }
+  }, [replyToName, replyToId]);
 
   const clearForm = function () {
     setIsInputActive(false);
@@ -35,7 +44,8 @@ function CommentInput({ loginRedirUrl, eventId, updateComments }) {
   const makeCommentClick = async function () {
     await checkIsAuthorized();
     try {
-      const response = await axios.post('/api/event/add-comment', 
+      if (!replyToId) {
+        const response = await axios.post('/api/event/add-comment', 
         {
           event_id:eventId, 
           text: commentText
@@ -43,9 +53,24 @@ function CommentInput({ loginRedirUrl, eventId, updateComments }) {
         {
           withCredentials: true
         });
+        console.log('нет reply')
+      } else {
+        
+        const response = await axios.post('/api/event/add-comment', 
+        {
+          event_id:eventId, 
+          text: commentText,
+          reply_to_id: replyToId
+        }, 
+        {
+          withCredentials: true
+        });
+      }
+      
       console.log('отправлено', eventId)
       clearForm();
       updateComments();
+      onCommentAdded();
     } catch (error) {
       console.log('assa', error);
     }
@@ -66,7 +91,10 @@ function CommentInput({ loginRedirUrl, eventId, updateComments }) {
           isInputActive ? 
           <div className={styles.buttonsBlock}>
             <button onClick={makeCommentClick} className={styles.makeCommentButton}>Оставить отзыв</button>
-            <button onClick={clearForm} className={styles.cancelButton}>Отмена</button>
+            <button onClick={() => {
+              clearForm();
+              onCancelButtonClick();
+            }} className={styles.cancelButton}>Отмена</button>
           </div>
           :
           ``
