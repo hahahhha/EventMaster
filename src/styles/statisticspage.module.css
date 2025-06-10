@@ -1,0 +1,39 @@
+.statPage .mainContainer {
+    display: flex;
+    margin: 0 auto;
+    width: 1160px;
+    border-radius: 17px;
+    font-family: 'Raleway', sans-serif;
+
+    margin-top: 50px;
+    margin-bottom: 120px;
+
+    overflow: hidden;
+
+    -webkit-box-shadow: 0px 10px 20px -8px rgba(66, 68, 90, 1);
+    -moz-box-shadow: 0px 10px 20px -8px rgba(66, 68, 90, 1);
+    box-shadow: 0px 10px 20px -8px rgba(66, 68, 90, 1);
+}
+
+.statPage h1, .statPage h2, .statPage p {
+    padding: 0;
+    margin: 0;
+}
+
+.statPage .left, .statPage .right {
+    padding-top: 45px;
+    padding-bottom: 45px;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.statPage .left {
+    padding-left: 45px;
+}
+
+.statPage .right {
+    background-color: #282B28;
+    padding-right: 45px;
+    padding-left: 45px;
+}

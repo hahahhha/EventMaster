@@ -13,6 +13,7 @@ import Mainpage from './components/MainPage';
 import Eventpage from './components/EventPage/Eventpage';
 import Profilepage from './components/Profilepage';
 import Adminpage from './components/AdminPage/Adminpage';
+import Statisticpage from './components/StatisticsPage/Statisticspage';
 
 import Comment from './components/EventPage/Comment';
 
@@ -25,6 +26,7 @@ import { API_URL } from './confing';
 import testPic from './assets/event1.jpg'
 import Ratingpage from './components/RatingPage/Ratingpage';
 import Createevt from './components/Createevt';
+
 
 
 axios.defaults.baseURL = API_URL;
@@ -66,12 +68,12 @@ const router = createBrowserRouter([
     element: <Createevt />
   },
   {
-    path: "comment",
-    element: <Comment text="Тест" author="Я" likes={5} dislikes={0} />
-  },
-  {
     path: "/admin",
     element: <Adminpage />
+  },
+  {
+    path: "/admin/statistics",
+    element: <Statisticpage />
   }
 ]);
 

@@ -17,7 +17,19 @@ function Mainpage() {
     const [toDate, setToDate] = useState('');
     const [searchKeys, setSearchKeys] = useState('');
     const [isDateConsider, setIsDateConsider] = useState(true);
+
+    const [isUserAdmin, setIsUserAdmin] = useState(false);
+
     const screenWidth = window.innerWidth;
+
+    const checkIsUserAdmin = async () => {
+        try {
+            const response = await axios.get('/api/auth/me/check-admin-role', { withCredentials: true });
+            setIsUserAdmin(response.data.isAdminRole);
+        } catch (error) {
+            setIsUserAdmin(false);
+        }
+    }
 
     const setEventsBetweenDates = async (y1, m1, d1, y2, m2, d2) => {
         console.log(y1, m1, d1, y2, m2, d2);
@@ -87,6 +99,11 @@ function Mainpage() {
         }
     }
 
+    // проверка на роль админа
+    useEffect(() => {
+        checkIsUserAdmin();
+    }, [])  
+
     // получение сегодняшней даты и событий на сегодняшнюю дату
     useEffect(() => {
         const today = new Date();
@@ -147,6 +164,11 @@ function Mainpage() {
                                 }
                                 {screenWidth <= 650 ? 
                                     <li><a href="/register">Регистрация</a></li>
+                                    :
+                                    ``
+                                }
+                                {isUserAdmin ?
+                                    <li><a href="/admin">Админка</a></li>
                                     :
                                     ``
                                 }

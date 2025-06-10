@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react';
 import styles from '../../styles/adminpage.module.css';
-import Header from '../Header';
+import AdminHeader from '../AdminHeader';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Card from './Eventcard';
+import pic from '../../assets/event1.jpg';
+import Footer from '../Footer';
 
 function Adminpage() {
   const navigate = useNavigate();
@@ -23,12 +26,7 @@ function Adminpage() {
 
   return (
     <div className={styles.adminpage}>
-      <Header>
-        <div className={styles.headerContent}>
-          <a href="/main">StudentFlow.</a>
-          <a href="/admin">admin</a>
-        </div>
-      </Header>
+      <AdminHeader />
       <div className={styles.mainContainer}>
 
         <div className={`${styles.infoBlock} ${styles.statisticsBlock}`}>
@@ -36,7 +34,7 @@ function Adminpage() {
           <p>Здесь вы можете посмотреть данные о каждом мероприятии - 
             от даты проведения до средней оценки и количества человек из каждого института
           </p>
-          <button>Открыть статистику</button>
+          <button onClick={() => {navigate('/admin/statistics')}}>Открыть статистику</button>
         </div>
 
         <div className={styles.row}>
@@ -63,7 +61,53 @@ function Adminpage() {
           </p>
           <button>Начать</button>
         </div>
+
+        <div className={styles.row}>
+          <div className={`${styles.infoBlock} ${styles.profileBlock}`}>
+            <h2>Мой профиль</h2>
+            <p>
+              Можно посмотреть или отредактировать свой профиль
+            </p>
+            <button>Открыть</button>
+          </div>
+
+          <div className={`${styles.infoBlock} ${styles.usersBlock}`}>
+            <h2>Все пользователи сайта</h2>
+            <p>
+              Вся информация о пользователях сайта, можно кого-нибудь заблокировать :)
+            </p>
+            <button>Перейти</button>
+          </div>
+        </div>
+
+        <div className={styles.weekEvents}>
+          <span className={styles.weekEventsTitle}>Мероприятия этой недели</span>
+          <div className={styles.weekEventsBlock}>
+            <Card
+              title="Альфа-Будущее Фест в Екатеринбурге ❤️"
+              dateString="10 июня, 14:00-16:00"
+              imgSrc={pic}
+              link="/event?id=20"
+            />
+            <Card
+              title="Альфа-Будущее Фест в Екатеринбурге ❤️"
+              dateString="10 июня, 14:00-16:00"
+              imgSrc={pic}
+            />
+            <Card
+              title="Альфа-Будущее Фест в Екатеринбурге ❤️"
+              dateString="10 июня, 14:00-16:00"
+              imgSrc={pic}
+            />
+            <Card
+              title="Альфа-Будущее Фест в Екатеринбурге ❤️"
+              dateString="10 июня, 14:00-16:00"
+              imgSrc={pic}
+            />
+          </div>
+        </div>
       </div>
+      <Footer />
     </div>
   )
 }
