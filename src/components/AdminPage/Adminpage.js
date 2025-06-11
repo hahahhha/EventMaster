@@ -7,21 +7,12 @@ import Card from './Eventcard';
 import pic from '../../assets/event1.jpg';
 import Footer from '../Footer';
 
+import checkIsAdmin from '../../functions/checkIsAdmin';
+
 function Adminpage() {
   const navigate = useNavigate();
   useEffect(() => {
-    const checkIsAdmin = async () => {
-      try {
-        const response = await axios.get('/api/auth/me/check-admin-role', { withCredentials:true });
-        if (!response.data.isAdminRole) {
-          navigate(`/login?redir=${encodeURIComponent('/admin')}`);
-        }
-      } catch (error) {
-        navigate(`/login?redir=${encodeURIComponent('/admin')}`);
-      }
-    }
-
-    checkIsAdmin();
+    checkIsAdmin('/admin', navigate);
   }, [])
 
   return (

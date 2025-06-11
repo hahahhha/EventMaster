@@ -1,0 +1,29 @@
+.ratingBadge {
+    padding: 5px 15px;
+    border-radius: 20px;
+    width:fit-content;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+}
+
+.ratingBadge.highest {
+    background-color: #3BCE71;
+}
+
+.ratingBadge.good {
+    background-color: #89CE3B;
+}
+
+.ratingBadge.middle {
+    background-color: #E4DC41;
+}
+
+.ratingBadge.lowermiddle {
+    background-color: #E49041;
+}
+
+.ratingBadge.lower {
+    background-color: #E44641;
+}

@@ -1,0 +1,9 @@
+.visitBadge {
+    padding: 5px 15px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    background-color: #282B28;
+    border-radius: 8px;
+}

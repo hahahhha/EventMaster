@@ -26,6 +26,7 @@ import { API_URL } from './confing';
 import testPic from './assets/event1.jpg'
 import Ratingpage from './components/RatingPage/Ratingpage';
 import Createevt from './components/Createevt';
+import Eventstatpage from './components/EventStatisticsPage/Eventstatpage';
 
 
 
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
   {
     path: "/admin/statistics",
     element: <Statisticpage />
+  },
+  {
+    path: "/admin/event-statistics",
+    element: <Eventstatpage />
   }
 ]);
 

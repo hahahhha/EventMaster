@@ -1,0 +1,67 @@
+.evtStatPage {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Raleway', sans-serif;
+    background-color: #F5F7FA;
+}
+
+.evtStatPage .chartRow {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 45px;
+}
+
+.evtStatPage h1, .evtStatPage h2, .evtStatPage p {
+    margin: 0;
+    padding: 0;
+}
+
+.evtStatPage .mainTitle {
+    text-align: center;
+    margin: 45px 0;
+}
+
+.evtStatPage .row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.evtStatPage .chartBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: fit-content;
+    padding: 30px 50px;
+    background-color: #FDFDFD;
+    border: 1px solid rgba(110, 189, 186, 0.8);
+    border-radius: 17px;
+}
+
+.evtStatPage .ratingChart {
+    margin-left: -40px;
+    margin-top: 20px;
+}
+
+.evtStatPage .visitBlock {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.evtStatPage .visitBlock h2 {
+    margin-left: 50px;
+}
+
+.evtStatPage .visitBlock .row {
+    margin-left: 50px;
+}
+
+.evtStatPage .visitBlock .pieChart {
+    margin-top: -80px;
+}
+
+.evtStatPage .chartRow {
+    margin-bottom: 120px;
+}
