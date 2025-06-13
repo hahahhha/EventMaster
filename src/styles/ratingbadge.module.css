@@ -27,3 +27,7 @@
 .ratingBadge.lower {
     background-color: #E44641;
 }
+
+.ratingBadge.noRating {
+    background-color: #787878;
+}

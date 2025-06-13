@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '../../styles/adminpage.module.css';
 import AdminHeader from '../AdminHeader';
 import axios from 'axios';
@@ -6,18 +6,48 @@ import { useNavigate } from 'react-router-dom';
 import Card from './Eventcard';
 import pic from '../../assets/event1.jpg';
 import Footer from '../Footer';
+import Modal from '../Modal/Modal';
 
 import checkIsAdmin from '../../functions/checkIsAdmin';
 
 function Adminpage() {
+  const [isOrganizerModalOpen, setIsOrganizerModalOpen] = useState(false);
+  const [isAdminModalOpen, setIsAdminModalOpen] = useState(false);
+
+  const [overlayClass, setOverlayClass] = useState();
+
   const navigate = useNavigate();
   useEffect(() => {
     checkIsAdmin('/admin', navigate);
   }, [])
 
+  useEffect(() => {
+    if (isOrganizerModalOpen || isAdminModalOpen) {
+      setOverlayClass(styles.darkBack)
+    } else {
+      setOverlayClass(``);
+    }
+  }, [isOrganizerModalOpen, isAdminModalOpen])
+
   return (
-    <div className={styles.adminpage}>
+    <div className={`${styles.adminpage} ${overlayClass}`}>
       <AdminHeader />
+      <Modal isOpen={isOrganizerModalOpen} title={`Добавить организатора`} 
+        setIsOpen={setIsOrganizerModalOpen}
+        description={`Вы можете добавить нового пользователя, наделенного правами организатора, или выдать права существующему пользователю`}
+        submitText={`Выдать права`}
+        cancelText={`Создать пользователя`}
+        onCancel={() => {navigate('/admin/reg-admin')}}
+      />
+      <Modal isOpen={isAdminModalOpen} title={`Добавить администратора`}
+        setIsOpen={setIsAdminModalOpen}
+        description={`Вы можете добавить нового пользователя, наделенного правами админа, или выдать права существующему пользователю`}
+        submitText={`Выдать права`}
+        cancelText={`Создать пользователя`}
+        onCancel={() => {}}
+        onSubmit={() => {}}
+      />
+      
       <div className={styles.mainContainer}>
 
         <div className={`${styles.infoBlock} ${styles.statisticsBlock}`}>
@@ -34,14 +64,14 @@ function Adminpage() {
             <p>
               Регистрация организатора на сайте или наделение существующего пользователя правами организатора
             </p>
-            <button>Перейти</button>
+            <button onClick={() => {setIsOrganizerModalOpen(true)}}>Перейти</button>
           </div>
           <div className={`${styles.infoBlock} ${styles.addAdminBlock}`}>
             <h2>Добавить<br/>администратора</h2>
             <p>
               Можно зарегистрировать или наделить зарегистрированного пользователя правами администратора
             </p>
-            <button>Перейти</button>
+            <button onClick={() => {setIsAdminModalOpen(true)}}>Перейти</button>
           </div>
         </div>
 

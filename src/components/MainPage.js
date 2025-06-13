@@ -1,14 +1,21 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { API_URL } from '../confing'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import styles from '../styles/mainpage.module.css'
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Eventcard from './Eventcard'
 
 import accLogo from '../assets/account_img.svg'
 
 function Mainpage() {
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    const notifyType = searchParams.get('notify');
+
     const navigate = useNavigate();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [fromDate, setFromDate] = useState('');
@@ -98,6 +105,14 @@ function Mainpage() {
             }));
         }
     }
+
+    // уведомления
+    useEffect(() => {
+        if (notifyType === 'reg-admin') {
+            console.log('1233')
+            toast.success("Новый администратор успешно зарегистрирован")
+        }
+    }, [])
 
     // проверка на роль админа
     useEffect(() => {
@@ -258,6 +273,7 @@ function Mainpage() {
                     </div>
                 </div>
             </section> */}
+            <ToastContainer />
         </div>
     )
 }

@@ -1,0 +1,35 @@
+.otpContainer {
+  display: flex;
+  gap: 10px;
+  font-family: 'Raleway', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.otpInput {
+  width: 50px;
+  height: 60px;
+  text-align: center;
+  font-size: 24px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  transition: all 0.3s;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 26px;
+}
+
+.otpInput:focus {
+  border-color: #4285f4;
+  outline: none;
+  box-shadow: 0 0 5px rgba(66, 133, 244, 0.5);
+}
+
+.otpInput.error {
+  border-color: #ff4444;
+}
+
+@media (max-width: 500px) {
+  .otpInput {
+    width: 40px;
+    height: 50px;
+    font-size: 24px;
+  }
+}

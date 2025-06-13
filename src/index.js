@@ -27,6 +27,7 @@ import testPic from './assets/event1.jpg'
 import Ratingpage from './components/RatingPage/Ratingpage';
 import Createevt from './components/Createevt';
 import Eventstatpage from './components/EventStatisticsPage/Eventstatpage';
+import RegisterRolePage from './components/RegisterRolePage/RegisterRolePage';
 
 
 
@@ -79,6 +80,10 @@ const router = createBrowserRouter([
   {
     path: "/admin/event-statistics",
     element: <Eventstatpage />
+  },
+  {
+    path: "/admin/reg-admin",
+    element: <RegisterRolePage role="администратора"/>
   }
 ]);
 

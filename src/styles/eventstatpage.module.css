@@ -5,11 +5,18 @@
     background-color: #F5F7FA;
 }
 
+.evtStatPage .mainContainer {
+    width: 860px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 50px;
+}
+
 .evtStatPage .chartRow {
     display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 45px;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .evtStatPage h1, .evtStatPage h2, .evtStatPage p {
@@ -29,7 +36,7 @@
     margin-top: 12px;
 }
 
-.evtStatPage .chartBlock {
+.evtStatPage .infoBlock {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -59,9 +66,45 @@
 }
 
 .evtStatPage .visitBlock .pieChart {
-    margin-top: -80px;
+    margin-top: -40px;
 }
 
 .evtStatPage .chartRow {
-    margin-bottom: 120px;
+    margin-bottom: 50px;
+}
+
+.evtStatPage .titleBlock {
+    width: calc(100% - 100px);
+    margin-bottom: 45px;
+    margin-top: 45px;
+}
+
+.evtStatPage .titleBlock h1 {
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+@media (max-width: 800px) {
+    .evtStatPage .mainContainer {
+        padding: 10px;
+        gap: 10px;
+        width: fit-content;
+    }
+    .evtStatPage .infoBlock {
+        width: fit-content;
+        margin: 0;
+        margin: 0 auto;
+    }
+    .evtStatPage .chartRow {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .evtStatPage .titleBlock {
+        padding: 12px 8px;
+    }
+    .evtStatPage .titleBlock h1{
+        text-align: center;
+        max-width: none;
+    }
 }
