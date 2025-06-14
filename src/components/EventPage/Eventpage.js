@@ -10,6 +10,26 @@ import CommentInput from './CommentInput';
 
 import checkIsAuthorized from '../../functions/checkIsAuthorized';
 
+function pluralizeComments(count) {
+  // Получаем последнюю цифру числа
+  const lastDigit = count % 10;
+  const lastTwoDigits = count % 100;
+
+  // Исключения для чисел 11-14
+  if (lastTwoDigits >= 11 && lastTwoDigits <= 14) {
+    return `${count} комментариев`;
+  }
+
+  // Основные правила склонения
+  if (lastDigit === 1) {
+    return `${count} комментарий`;
+  } else if (lastDigit >= 2 && lastDigit <= 4) {
+    return `${count} комментария`;
+  } else {
+    return `${count} комментариев`;
+  }
+}
+
 function Eventpage() {
   const [searchParams] = useSearchParams();
   const eventId = searchParams.get('id');
@@ -19,6 +39,7 @@ function Eventpage() {
   const [isUserRegistered, setIsUserRegistered] = useState(false);
 
   const [comments, setComments] = useState([]);
+  const [commentsLength, setCommentsLength] = useState(0);
 
   const [replyTo, setReplyTo] = useState('');
   const [replyId, setReplyId] = useState();
@@ -45,6 +66,7 @@ function Eventpage() {
   const getEventComments = async () => {
     const response = await axios.get(`/api/event/comments?id=${eventId}`);
     setComments(response.data.comments);
+    setCommentsLength(response.data.comments.length)
     console.log(response.data.comments);
   }
 
@@ -148,7 +170,7 @@ function Eventpage() {
 
         <div className={styles.commentsBlock}>
           <div className={styles.commentsBlockRow}>
-            <span>1 комментарий (тут будут комментарии)</span>
+            <span>{pluralizeComments(commentsLength)}</span>
             <select className={styles.sortSelect}>
               <option value="newest">Сначала новые</option>
               <option value="oldest">Сначала популярные</option>

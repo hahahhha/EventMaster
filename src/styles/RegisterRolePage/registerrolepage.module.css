@@ -216,6 +216,26 @@
     
 }
 
+.registerRolePage .topRow {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.registerRolePage .closeButton {
+    border: none;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    display: block;
+    transition: all 100ms ease-in;
+}
+
+.registerRolePage .closeButton:hover {
+    color: #676767;
+}
+
 @media (max-width: 700px) {
     .registerRolePage .row {
         flex-direction: column;
@@ -255,5 +275,17 @@
 
     .registerRolePage .emailCodeBlock h2 {
         font-size: 20px;
+    }
+
+    .registerRolePage .topRow h1{
+        width: fit-content;
+        text-align: start;
+        margin-left: 10px;
+    }
+
+    .registerRolePage .closeButton {
+        font-size: 20px;
+        text-decoration: none;
+        display: block;
     }
 }

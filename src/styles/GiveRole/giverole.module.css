@@ -1,0 +1,155 @@
+/* Страница */
+.giveRolePage {
+    height: 100vh;
+    width: 100%;
+    background-color: #4070F4;
+    background-image: url('../../assets/svg_bg_025.svg');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Raleway', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.giveRolePage a {
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+    text-decoration-color: #454d5a;
+    color: #454d5a;
+    font-size: 14px;
+}
+
+/* Блок */
+
+.giveRolePage .mainBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 40px;
+    width: 500px;
+    min-width: 0px;
+    height: fit-content;
+    background-color: #fff;
+    -webkit-box-shadow: 0px 15px 35px -5px rgba(75, 75, 82, 0.15);
+    -moz-box-shadow: 0px 15px 35px -5px rgba(75, 75, 82, 0.15);
+    box-shadow: 0px 15px 35px -5px rgba(75, 75, 82, 0.15);
+    border-radius: 8px;
+    transition: all 500ms ease-in-out;
+    opacity: 1;
+    z-index: 100;
+
+    position: relative;
+
+}
+
+.giveRolePage .mainBlock h2, .giveRolePage .mainBlock p {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.giveRolePage .mainBlock h2 {
+    margin-bottom: 15px;
+    font-size: 28px;
+}
+
+.giveRolePage .mainBlock p {
+    margin-bottom: 30px;
+    max-width: 70%;
+}
+
+/* Input */
+.giveRolePage input {
+    width: 100%;
+    padding: 12px 12px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #2d3748; 
+    background-color: #fff;
+    border: 1px solid #e2e8f0; 
+    border-radius: 6px; 
+    transition: all 0.2s ease;
+    -webkit-box-shadow: 0px 2px 15px -0 rgba(66, 68, 90, 0.1);
+    -moz-box-shadow: 0px 2px 15px -0 rgba(66, 68, 90, 0.1);
+    box-shadow: 0px 2px 15px -0 rgba(66, 68, 90, 0.1);
+    outline: none;
+    box-sizing: border-box;
+}
+
+.giveRolePage input:focus {
+    border-color: #4299e1;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2); /* Светлое свечение */
+}
+
+.giveRolePage input::placeholder {
+    color: #A6A6A6;
+    font-family: 'Raleway', 'Segoe UI', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    opacity: 1;
+}
+
+.giveRolePage input:disabled {
+    background-color: #f7fafc;
+    cursor: not-allowed;
+    opacity: 0.75;
+}
+
+.giveRolePage input.error {
+    border-color: #f56565;
+}
+
+.giveRolePage input.error:focus {
+    box-shadow: 0 0 0 3px rgba(245, 101, 101, 0.2);
+}
+
+/* Submit button */
+
+.submitButton {
+    background-color: #4070F4;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    color: white;
+    font-family: 'Raleway', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px 27px;
+    margin-top: 35px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); 
+    transition: all 200ms ease-out;
+}
+
+.giveRolePage .submitButton:hover {
+    background-color: #3a66e0;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
+}
+
+.giveRolePage .submitButton:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.giveRolePage .submitButton:disabled {
+    background-color: rgb(109, 109, 109);
+    color: rgb(212, 212, 212);
+}
+
+.giveRolePage .submitButton:disabled:hover {
+    background-color: rgb(109, 109, 109);
+    box-shadow: none;
+}
+
+.giveRolePage .submitButton:disabled:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+
+.giveRolePage .errorExplain {
+    position: absolute;
+    font-size: 12px;
+    top: calc(100% + 5px); /* +2px отступа */
+    left: 5px;
+    color: #ff4444;
+    line-height: 1;
+}

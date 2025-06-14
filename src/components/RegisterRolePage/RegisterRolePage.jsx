@@ -5,7 +5,7 @@ import axios from 'axios';
 import VerfiyBlock from './VerifyBlock';
 import checkIsAdmin from '../../functions/checkIsAdmin';
 
-function RegisterRolePage({ role }) {
+function RegisterRolePage({ role, regUrl }) {
   const navigate = useNavigate();
   const [isEmailTaken, setIsEmailTaken] = useState(false);
 
@@ -136,7 +136,7 @@ function RegisterRolePage({ role }) {
       setIsPasswordsEqual(true);
     }
     try {
-      await axios.post('/api/auth/reg-admin', {
+      await axios.post(regUrl, {
         name: formData.firstName,
         surname: formData.lastName,
         partonymic: formData.middleName,
@@ -180,7 +180,7 @@ function RegisterRolePage({ role }) {
         }, {withCredentials: true});
       console.log('success')
       setIsCodeCorrect(true);
-      navigate('/main?notify=Новый организатор успешно зарегистрирован');
+      navigate(`/main?notify=Новый пользователью с ролью ${role} успешно зарегистрирован`);
     } catch (error) {
       console.log(error);
       setIsCodeCorrect(false);
@@ -191,7 +191,10 @@ function RegisterRolePage({ role }) {
     <div className={`${styles.registerRolePage}`}>
       <div className={`${styles.formContainer} ${goAwayClass}`}>
         <form onSubmit={onFormSubmit}>
-          <h1>Регистрация {role}</h1>
+          <div className={styles.topRow}>
+            <h1>Регистрация {role}</h1>
+            <a href="/admin" className={styles.closeButton}>✕</a>
+          </div>
           <div className={styles.row}>
             <div className={`${styles.col} ${styles.leftCol}`}>
               <div className={styles.inputGroup}>

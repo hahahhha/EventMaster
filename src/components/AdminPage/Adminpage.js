@@ -6,15 +6,47 @@ import { useNavigate } from 'react-router-dom';
 import Card from './Eventcard';
 import pic from '../../assets/event1.jpg';
 import Footer from '../Footer';
+import checkIsAdmin from '../../functions/checkIsAdmin';
 import Modal from '../Modal/Modal';
 
-import checkIsAdmin from '../../functions/checkIsAdmin';
+import { format, parseISO } from 'date-fns';
+import { ru } from 'date-fns/locale';
+
+
+function formatDate(dateString) {
+  return format(parseISO(dateString), "d MMMM yyyy 'в' HH:mm", { locale: ru });
+};
+
+
+function getCurrentWeekDates() {
+  const now = new Date();
+  const dayOfWeek = now.getDay(); // 0 (воскресенье) до 6 (суббота)
+  
+  // Вычисляем понедельник (делаем понедельник первым днём недели)
+  const monday = new Date(now);
+  monday.setDate(now.getDate() - (dayOfWeek === 0 ? 6 : dayOfWeek - 1));
+  
+  // Вычисляем воскресенье
+  const sunday = new Date(now);
+  sunday.setDate(now.getDate() + (dayOfWeek === 0 ? 0 : 7 - dayOfWeek));
+  
+  // Приводим время к началу/концу дня
+  monday.setHours(0, 0, 0, 0);
+  sunday.setHours(23, 59, 59, 999);
+  
+  return {
+    monday,
+    sunday
+  };
+}
 
 function Adminpage() {
   const [isOrganizerModalOpen, setIsOrganizerModalOpen] = useState(false);
   const [isAdminModalOpen, setIsAdminModalOpen] = useState(false);
 
   const [overlayClass, setOverlayClass] = useState();
+
+  const [weekEvents, setWeekEvents] = useState([]);
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -29,6 +61,31 @@ function Adminpage() {
     }
   }, [isOrganizerModalOpen, isAdminModalOpen])
 
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {        
+        const { monday, sunday } = getCurrentWeekDates();
+        
+        const response = await axios.get('/api/event/between', {
+          params: {
+            year1: monday.getFullYear(),
+            month1: monday.getMonth() + 1, // месяцы 0-11 → 1-12
+            day1: monday.getDate(),
+            year2: sunday.getFullYear(),
+            month2: sunday.getMonth() + 1,
+            day2: sunday.getDate()
+          }
+        });
+        
+        setWeekEvents(response.data.events);
+      } catch (err) {
+        setWeekEvents([]);
+      } 
+    };
+    
+    fetchEvents();
+  }, []);
+
   return (
     <div className={`${styles.adminpage} ${overlayClass}`}>
       <AdminHeader />
@@ -37,15 +94,16 @@ function Adminpage() {
         description={`Вы можете добавить нового пользователя, наделенного правами организатора, или выдать права существующему пользователю`}
         submitText={`Выдать права`}
         cancelText={`Создать пользователя`}
-        onCancel={() => {navigate('/admin/reg-admin')}}
+        onCancel={() => {navigate('/admin/reg-organizer')}}
+        onSubmit={() => {navigate('/admin/give-organizer')}}
       />
       <Modal isOpen={isAdminModalOpen} title={`Добавить администратора`}
         setIsOpen={setIsAdminModalOpen}
         description={`Вы можете добавить нового пользователя, наделенного правами админа, или выдать права существующему пользователю`}
         submitText={`Выдать права`}
         cancelText={`Создать пользователя`}
-        onCancel={() => {}}
-        onSubmit={() => {}}
+        onCancel={() => {navigate('/admin/reg-admin')}}
+        onSubmit={() => {navigate('/admin/give-admin')}}
       />
       
       <div className={styles.mainContainer}>
@@ -104,27 +162,22 @@ function Adminpage() {
         <div className={styles.weekEvents}>
           <span className={styles.weekEventsTitle}>Мероприятия этой недели</span>
           <div className={styles.weekEventsBlock}>
-            <Card
+            {weekEvents.map((evt, index) => 
+              <Card 
+                title={evt.title}
+                dateString={formatDate(evt.date)}
+                link={`/event?id=${evt.id}`}
+              />
+            )}
+            {weekEvents.length === 0 ?
+            <span style={{color: 'white', fontFamily: 'Raleway'}}>Мероприятий на этой неделе нет</span> : ``
+            }
+            {/* <Card
               title="Альфа-Будущее Фест в Екатеринбурге ❤️"
               dateString="10 июня, 14:00-16:00"
               imgSrc={pic}
               link="/event?id=20"
-            />
-            <Card
-              title="Альфа-Будущее Фест в Екатеринбурге ❤️"
-              dateString="10 июня, 14:00-16:00"
-              imgSrc={pic}
-            />
-            <Card
-              title="Альфа-Будущее Фест в Екатеринбурге ❤️"
-              dateString="10 июня, 14:00-16:00"
-              imgSrc={pic}
-            />
-            <Card
-              title="Альфа-Будущее Фест в Екатеринбурге ❤️"
-              dateString="10 июня, 14:00-16:00"
-              imgSrc={pic}
-            />
+            /> */}
           </div>
         </div>
       </div>

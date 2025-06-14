@@ -28,7 +28,11 @@ import Ratingpage from './components/RatingPage/Ratingpage';
 import Createevt from './components/Createevt';
 import Eventstatpage from './components/EventStatisticsPage/Eventstatpage';
 import RegisterRolePage from './components/RegisterRolePage/RegisterRolePage';
-
+import RegisterAdmin from './components/RegisterRolePage/RegisterAdmin';
+import RegisterOrganizer from './components/RegisterRolePage/RegisterOrganizer';
+import GiveAdmin from './components/GiveRole/GiveAdmin';
+import GiveRole from './components/GiveRole/GiveRole';
+import GiveOrganizer from './components/GiveRole/GiveOrganizer';
 
 
 axios.defaults.baseURL = API_URL;
@@ -83,7 +87,19 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin/reg-admin",
-    element: <RegisterRolePage role="администратора"/>
+    element: <RegisterAdmin />
+  },
+  {
+    path: "/admin/reg-organizer",
+    element: <RegisterOrganizer />
+  },
+  {
+    path: "/admin/give-admin",
+    element: <GiveAdmin />
+  },
+  {
+    path: "/admin/give-organizer",
+    element: <GiveOrganizer />
   }
 ]);
 

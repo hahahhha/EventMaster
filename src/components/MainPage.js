@@ -108,9 +108,8 @@ function Mainpage() {
 
     // уведомления
     useEffect(() => {
-        if (notifyType === 'reg-admin') {
-            console.log('1233')
-            toast.success("Новый администратор успешно зарегистрирован")
+        if (notifyType) {
+            toast.success(notifyType)
         }
     }, [])
 
