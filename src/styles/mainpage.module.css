@@ -1,6 +1,7 @@
 /* Базовые стили */
 .mainContainer h1, p {
     margin: 0;
+    
 }
 
 .mainContainer {
@@ -20,6 +21,7 @@
     text-decoration-color: #3AAFA9;
     text-decoration-thickness: 1px;
     text-underline-offset: 20px;
+    text-align: center;
 }
 
 .underSlogan {
@@ -28,6 +30,7 @@
     line-height: 100%;
     letter-spacing: 0%;
     padding-bottom: 40px;
+    text-align: center;
 }
 
 .eventsSection {

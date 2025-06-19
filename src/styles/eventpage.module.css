@@ -100,6 +100,22 @@
     text-decoration-color: #3AAFA9; */
 }
 
+.eventPage .ratingBlock {
+    display: flex;
+    margin-top: 10px;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.eventPage .ratingBlock img{
+    cursor: pointer;
+}
+
+.eventPage .ratingBlock .stars {
+    display: flex;
+}
+
 
 @media (max-width: 600px) {
     .eventPage .notify p{

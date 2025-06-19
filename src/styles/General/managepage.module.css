@@ -1,0 +1,373 @@
+.adminpage.darkBack::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999; /* На один меньше, чем у модального окна */
+}
+
+.mainContainer {
+    width: 1280px;
+    margin: 0 auto;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+    padding-bottom: 100px;
+
+}
+
+.row {
+    display: flex;
+    gap: 45px;
+    justify-content: space-between;
+}
+
+.infoBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 17px;
+    font-family: 'Raleway', sans-serif;
+    padding: 30px 50px;
+}
+
+.infoBlock h2, p {
+    margin: 0;
+    padding: 0;
+    text-align: start;
+}
+
+.infoBlock button {
+    border: none;
+    font-family: 'Raleway', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+
+/* Блоки */
+
+/* Статистика */
+.statisticsBlock {
+    background-color: #F8F8F8;
+    gap: 35px;
+}
+
+.statisticsBlock h2 {
+    color: black;
+    font-size: 50px;
+    width: 514px;
+}
+
+.statisticsBlock p {
+    color: #4B4B4B;
+    max-width: 980px;
+    font-size: 24px;
+}
+
+.statisticsBlock button {
+    padding: 16px 32px;
+    font-weight: 600;
+    font-size: 20px;
+    border-radius: 6px;
+    color: white;
+    background-color: #2B7A77;
+}
+
+.statisticsBlock button:hover {
+    background-color: #3AAFA9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.statisticsBlock button:active {
+    background-color: #1F5F5D;
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.statisticsBlock button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+
+.statisticsBlock button:focus:not(:active)::after {
+    animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(20, 20);
+        opacity: 0;
+    }
+}
+
+
+/* Добавить организатора */
+
+.addOrgBlock {
+    background-color: #5F9B87;
+    color: white;
+    width: 571px;
+}
+
+.addOrgBlock h2 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.addOrgBlock p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    max-width: 457px;
+}
+
+.addOrgBlock button {
+    border: 1px solid white;
+    padding: 11px 44px;
+    background-color: transparent;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px;
+}
+
+.addOrgBlock button:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
+}
+
+.addOrgBlock button:active {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: scale(0.98);
+}
+
+
+/* Добавить админа */
+
+.addAdminBlock {
+    background-color: #282B28;
+    width: 571px;
+}
+
+.addAdminBlock h2 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.addAdminBlock p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: white;
+}
+
+.addAdminBlock button {
+    border: 1px solid white;
+    padding: 11px 44px;
+    background-color: transparent;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px;
+}
+
+.addAdminBlock button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+ .addAdminBlock button:active {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(0.98);
+}
+
+/* Управление мероприятиями */
+
+.eventsBlock button {
+    background-color: #282B28;
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 16px 80px;
+    border-radius: 6px;
+}
+
+.eventsBlock button:hover {
+    background-color: #3A4A3F;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.eventsBlock button:active {
+    background-color: #1E221F;
+    transform: translateY(1px);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Профиль и все пользователи */
+
+.profileBlock {
+    width: 390px;
+    background-color: #CDD6D0;
+}
+
+.usersBlock {
+    width: 750px;
+    background-color: #D6CBC1;
+}
+
+.usersBlock, .profileBlock {
+    padding: 30px 50px;
+    gap: 30px;
+}
+
+.usersBlock h2, .profileBlock h2 {
+    color: black;
+    font-size: 36px;
+}
+
+.usersBlock p, .profileBlock p {
+    font-size: 18px;
+    font-weight: 500;
+    width: fit-content;
+    max-width: 600px;
+}
+
+.usersBlock button, 
+.profileBlock button {
+    background-color: #282B28;
+    padding: 10px 48px;
+    color: white;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.usersBlock button:hover, 
+.profileBlock button:hover {
+    background-color: #3A4A3F;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.usersBlock button:active, 
+.profileBlock button:active {
+    background-color: #1E221F;
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.usersBlock button::before, 
+.profileBlock button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.4s ease;
+    z-index: -1;
+}
+
+.myEventsBlock {
+    background-color: #282B28;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    border-radius: 17px;
+    gap: 25px;
+}
+
+.myEventsBlock .title {
+    color: white;
+    font-family: 'Raleway', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 24px;
+    margin: 0;
+}
+
+.weekEventsTitle {
+    color: white;
+    font-family: 'Raleway', sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.myEventsBlock .weekEventsBlock {
+    max-width: 840px;
+    width: fit-content;
+    display: flex;
+    gap: 45px;
+    flex-wrap: wrap;
+}
+
+/* Адаптация */
+@media (max-width: 1280px) {
+    .mainContainer {
+        width: 100%; /* ← Основная проблема здесь! */
+        padding: 0 20px; /* Добавляем внутренние отступы */
+        box-sizing: border-box; /* Важно! */
+        gap: 20px;
+    }
+
+    .row {
+        flex-direction: column;
+        gap: 20px; /* Уменьшаем промежуток между блоками */
+        width: 100%;
+    }
+
+    .infoBlock {
+        width: 100%;
+        padding: 20px; /* Добавляем отступы внутри блоков */
+        box-sizing: border-box; /* Важно! */
+        max-width: none; /* Убираем ограничение */
+    }
+
+    .infoBlock h2 {
+        font-size: 24px; /* Чуть увеличим для мобильных */
+        width: 100%; /* Занимаем всю ширину */
+    }
+
+    .infoBlock p {
+        width: 100%; /* Занимаем всю ширину */
+        max-width: 100%; /* Убираем ограничение */
+        font-size: 16px; /* Оптимальный размер для мобильных */
+    }
+
+    .infoBlock button {
+        font-size: 14px;
+    }
+
+    .myEventsBlock {
+        margin-bottom: 45px;
+    }
+
+    .weekEventsBlock {
+        display: flex;
+        flex-direction: column;
+        max-width: none;
+        align-items: center;
+    }
+}

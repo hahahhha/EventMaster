@@ -1,0 +1,102 @@
+.blackButton {
+    background-color: #282B28;
+    border-radius: 5px;
+    padding: 6px 25px;
+    cursor: pointer;
+    font-family: 'Raleway', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: none;
+    transition: 200ms ease;
+    color: white;
+    font-size: 14px;
+}
+
+.blackButton:hover {
+    transform: translateY(1px);
+}
+
+
+
+.whiteTransparentButton {
+    border: 1px solid white;
+    padding: 11px 44px;
+    background-color: transparent;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px;
+}
+
+.whiteTransparentButton:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
+}
+
+.whiteTransparentButton:active {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: scale(0.98);
+}
+
+.transparentBlackBorderButton {
+    border: 1px solid #282B28;
+    cursor: pointer;
+    background-color: transparent;
+    font-family: 'Raleway', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    border-radius: 5px;
+    transition: 300ms ease;
+    color: black;
+    padding: 8px 20px;
+}
+
+.transparentBlackBorderButton:hover {
+    transform: translateY(-1px);
+}
+
+.transparentBlackBorderButton:active {
+    transform: translateY(1px);
+}
+
+.transparentBlackBorderButton:disabled {
+    border: 1px solid rgb(102, 102, 102);
+    color: rgb(102, 102, 102);
+}
+
+
+.greenButton {
+    padding: 16px 32px;
+    font-weight: 600;
+    font-size: 20px;
+    border-radius: 6px;
+    color: white;
+    background-color: #2B7A77;
+}
+
+.greenButton:hover {
+    background-color: #3AAFA9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.greenButton:active {
+    background-color: #1F5F5D;
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.greenButton::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+
+.greenButton:focus:not(:active)::after {
+    animation: ripple 0.6s ease-out;
+}

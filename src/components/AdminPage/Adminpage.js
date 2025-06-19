@@ -9,14 +9,7 @@ import Footer from '../Footer';
 import checkIsAdmin from '../../functions/checkIsAdmin';
 import Modal from '../Modal/Modal';
 
-import { format, parseISO } from 'date-fns';
-import { ru } from 'date-fns/locale';
-
-
-function formatDate(dateString) {
-  return format(parseISO(dateString), "d MMMM yyyy 'в' HH:mm", { locale: ru });
-};
-
+import formatDate from '../../functions/formatDate';
 
 function getCurrentWeekDates() {
   const now = new Date();
@@ -138,7 +131,7 @@ function Adminpage() {
           <p>
             Вы можете создать мероприятие или удалить, изменить дату проведения, отметить участника вручную
           </p>
-          <button>Начать</button>
+          <button onClick={() => navigate('/admin/event-manager')}>Начать</button>
         </div>
 
         <div className={styles.row}>
@@ -147,7 +140,7 @@ function Adminpage() {
             <p>
               Можно посмотреть или отредактировать свой профиль
             </p>
-            <button>Открыть</button>
+            <button onClick={() => navigate('/profile')}>Открыть</button>
           </div>
 
           <div className={`${styles.infoBlock} ${styles.usersBlock}`}>

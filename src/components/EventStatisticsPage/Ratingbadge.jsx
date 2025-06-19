@@ -4,7 +4,7 @@ import styles from '../../styles/ratingbadge.module.css';
 function Ratingbadge({children }) {
     const [bgClass, setBgClass] = useState('');
     useEffect(() => {
-        if (children == '?') {
+        if (children == '0') {
             setBgClass(styles.noRating);
             return;
         }

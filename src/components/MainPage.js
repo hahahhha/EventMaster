@@ -26,6 +26,7 @@ function Mainpage() {
     const [isDateConsider, setIsDateConsider] = useState(true);
 
     const [isUserAdmin, setIsUserAdmin] = useState(false);
+    const [isUserOrganizer, setIsUserOrganizer] = useState(false);
 
     const screenWidth = window.innerWidth;
 
@@ -35,6 +36,15 @@ function Mainpage() {
             setIsUserAdmin(response.data.isAdminRole);
         } catch (error) {
             setIsUserAdmin(false);
+        }
+    }
+
+    const checkIsUserOrganizer = async () => {
+        try {
+            const response = await axios.get('/api/auth/me/check-organizer-role', { withCredentials: true });
+            setIsUserOrganizer(response.data.isOrganizerRole);
+        } catch (error) {
+            setIsUserOrganizer(false);
         }
     }
 
@@ -67,9 +77,11 @@ function Mainpage() {
     };
 
     const setAllEvents = async () => {
+        console.log('set all evts')
         try {
             const response = await axios.get('/api/event/all');
             setEvents(response.data.events);
+            console.log(response.data.events)
             return response.data.events;
         } catch (error) {
             console.log('Не удалось получить все события');
@@ -78,7 +90,6 @@ function Mainpage() {
     }
 
     const searchClickHandler = async () => {
-        
         const splittedFrom = fromDate.split('-').map((item) => parseInt(item));
         const splittedTo = toDate.split('-').map((item) => parseInt(item));
         let evts = []
@@ -98,9 +109,10 @@ function Mainpage() {
             setEvents(evts.filter(evt => {
                 const title = String(evt.title || '').toLowerCase();
                 const description = String(evt.description || '').toLowerCase();
-                
+                const tag = String(evt.hashtag || '').toLowerCase();
+                console.log(tag + ' tag' || '123123');
                 return searchTerms.some(term => 
-                    title.includes(term) || description.includes(term)
+                    title.includes(term) || description.includes(term) || tag.includes(term)
                 );
             }));
         }
@@ -113,9 +125,10 @@ function Mainpage() {
         }
     }, [])
 
-    // проверка на роль админа
+    // проверка на роль админа | организатора
     useEffect(() => {
         checkIsUserAdmin();
+        checkIsUserOrganizer();
     }, [])  
 
     // получение сегодняшней даты и событий на сегодняшнюю дату
@@ -186,6 +199,11 @@ function Mainpage() {
                                     :
                                     ``
                                 }
+                                {isUserOrganizer ?
+                                    <li><a href="/organizer">Управление мероприятиями</a></li>
+                                    :
+                                    ``
+                                }
                                 
                             </ul>
                         </div>
@@ -225,7 +243,7 @@ function Mainpage() {
                                 </div>
                             </div>
                         </div>
-                        <label>Ключевые слова</label>
+                        <label>Название, ключевые слова / теги</label>
                         <input 
                             type='text' 
                             className={styles.searchInput}

@@ -8,6 +8,10 @@
     border-radius: 8px;
 }
 
+.eventCard.border {
+    border: 1px solid black;
+}
+
 .eventCard .eventData {
     display: flex;
     flex-direction: column;
@@ -63,6 +67,15 @@
     background-color: #1E221F;
     transform: translateY(1px);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.eventCard .goButton:disabled {
+    background-color: #e0e0e0;
+    color: #a0a0a0;
+    border: 1px solid #d0d0d0;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
 }
 
 .eventCard .editButton {

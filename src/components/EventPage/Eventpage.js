@@ -7,8 +7,14 @@ import Header from '../Header';
 import Blackbtn from '../Blackbtn'
 import Comment from './Comment';
 import CommentInput from './CommentInput';
+import { ToastContainer,  toast } from 'react-toastify';
 
 import checkIsAuthorized from '../../functions/checkIsAuthorized';
+
+import filledStar from '../../assets/fill_star.svg';
+import emptyStar from '../../assets/empty_star.svg';
+
+import buttonStyles from '../../styles/General/buttons.module.css';
 
 function pluralizeComments(count) {
   // Получаем последнюю цифру числа
@@ -31,6 +37,22 @@ function pluralizeComments(count) {
 }
 
 function Eventpage() {
+  const [starsAmount, setStarsAmount] = useState();
+  const [stars, setStars] = useState(Array(5).fill(emptyStar));
+  const [isSaveRateButtonActive, setIsSaveRateButtonActive] = useState(false);
+  const changeStars = (rate) => {
+    setIsSaveRateButtonActive(true);
+    let newStars = Array(5).fill(emptyStar);
+
+    for (let i = 0; i < stars.length; i++) {
+      if (i < rate) {
+        newStars[i] = filledStar
+      }
+    }
+    setStarsAmount(rate);
+    setStars(newStars);
+  }
+
   const [searchParams] = useSearchParams();
   const eventId = searchParams.get('id');
   const [eventData, setEventData] = useState(null);
@@ -48,7 +70,6 @@ function Eventpage() {
   const redirectUrl = `/event?id=${eventId}`;
 
   // проверка, зарегистрирован ли пользователь на мероприятие
-  
   const getIsUserRegistered = async () => {
       try {
         const response = await axios.get('/api/user/events', {withCredentials: true});
@@ -67,11 +88,43 @@ function Eventpage() {
     const response = await axios.get(`/api/event/comments?id=${eventId}`);
     setComments(response.data.comments);
     setCommentsLength(response.data.comments.length)
-    console.log(response.data.comments);
+    // console.log(response.data.comments);
+  }
+
+  const onSaveRatingButtonClick = async () => {
+    try {
+      const response = await axios.post('/api/event/add-rate', {
+        id: eventId,
+        rate: starsAmount
+      }, {withCredentials: true});
+      toast.success('Оценка поставлена')
+    } catch (error) {
+      console.log(error);
+      toast.error(error)
+    }
+  }
+
+  const getRate = async function() {
+    const isAuthed = await checkIsAuthorized();
+    if (!isAuthed) {
+      navigate(`/login?redir=${encodeURIComponent(redirectUrl)}`);
+      return;
+    }
+    try {
+      const response = await axios.get(`/api/user/my-event-rate?eventId=${eventId}`, {
+        withCredentials: true
+      });
+      setStarsAmount(response.data.rate);
+      changeStars(response.data.rate)
+      setIsSaveRateButtonActive(false);
+      // setIsSaveRateButtonActive(false);
+    } catch (error) {
+
+    }
   }
 
   useEffect(() => {
-    
+    getRate();
     getEventComments();
     getIsUserRegistered();
   }, []);
@@ -90,6 +143,7 @@ function Eventpage() {
       }, {withCredentials: true});
       setIsUserRegistered(true);
       eventData.attendees++;
+      toast.success('Вы зарегистрировались на мероприятие')
     } catch (error) {
       console.log('не удалось зарегистрировать пользователя на мероприятие');
       console.log(error);
@@ -114,6 +168,7 @@ function Eventpage() {
 
     getData();
   }, [eventId]);
+
 
   if (loading) {
     return <div className={styles.eventPage}>Загрузка...</div>;
@@ -167,14 +222,26 @@ function Eventpage() {
         <h1>{eventData.title}</h1>
         <h2>Что тебя ждёт?</h2>
         <p>{eventData.description}</p>
-
+        <div className={styles.ratingBlock}>
+          <div className={styles.stars}>
+          {[...Array(5)].map((item, index) => (
+            <img key={index} width="30" height="30" src={stars[index]} onClick={() => changeStars(index + 1)}/>
+            
+          ))}
+          </div>
+          { isSaveRateButtonActive ?
+          <div>
+            <button className={buttonStyles.blackButton} onClick={onSaveRatingButtonClick}>Оценить</button>
+          </div> : ``
+          }
+        </div>
         <div className={styles.commentsBlock}>
           <div className={styles.commentsBlockRow}>
             <span>{pluralizeComments(commentsLength)}</span>
-            <select className={styles.sortSelect}>
+            {/* <select className={styles.sortSelect}>
               <option value="newest">Сначала новые</option>
               <option value="oldest">Сначала популярные</option>
-            </select>
+            </select> */}
           </div>
           <CommentInput 
             loginRedirUrl={redirectUrl} 
@@ -210,7 +277,7 @@ function Eventpage() {
           </div>
         </div>
       </div>
-      
+      <ToastContainer />
     </div>
   );
 }

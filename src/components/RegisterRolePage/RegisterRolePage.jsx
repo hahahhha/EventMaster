@@ -139,7 +139,7 @@ function RegisterRolePage({ role, regUrl }) {
       await axios.post(regUrl, {
         name: formData.firstName,
         surname: formData.lastName,
-        partonymic: formData.middleName,
+        patronymic: formData.middleName,
         password: formData.password,
         birth_date: formData.birthdate,
         email: formData.email

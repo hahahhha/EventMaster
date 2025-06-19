@@ -171,7 +171,7 @@ function Createevt() {
               </div>
             </div>
             <div className={styles.bottomArea}>
-              <button type='submit'>Создать</button>
+              <button className={styles.submitButton} type='submit'>Создать</button>
             </div>
           </form>
         </div>

@@ -9,6 +9,7 @@ body {
     align-items: center;
     flex-direction: column;
     color: white;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .evtBlock form p {
@@ -110,6 +111,24 @@ body {
 
 .createEvt .bottomArea button:active {
     transform: translateY(2px);
+}
+
+.createEvt .submitButton {
+    background-color: #000000; /* Черный цвет фона */
+    color: #ffffff; /* Белый цвет текста */
+    font-family: 'Raleway', sans-serif; /* Шрифт Raleway */
+    font-weight: 500; /* Жирность шрифта (можно изменить на 400, 600 и т.д.) */
+    padding: 12px 30px; /* Внутренние отступы */
+    border: none; /* Убираем границу */
+    border-radius: 4px; /* Закругление углов */
+    cursor: pointer; /* Курсор в виде руки при наведении */
+    font-size: 16px; /* Размер шрифта */
+    transition: all 0.3s ease; /* Плавные переходы для hover-эффектов */
+}
+
+.button:hover {
+    background-color: #333333; /* Цвет фона при наведении */
+    /* Можно добавить другие эффекты при наведении */
 }
 
 @media (max-width: 1000px) {

@@ -2,9 +2,8 @@ import React from 'react'
 import styles from '../../styles/admineventcard.module.css';
 import { useNavigate } from 'react-router-dom';
 
-function Eventcard({ title, dateString, imgSrc, link, editLink, isBorder }) {
+function QrEventCard({ title, dateString, isBorder, onQrCreateClick, isButtonActive }) {
   const navigate = useNavigate();
-
 
   return (
     <div className={`${styles.eventCard} ${isBorder ? styles.border : ''}`} >
@@ -13,15 +12,11 @@ function Eventcard({ title, dateString, imgSrc, link, editLink, isBorder }) {
             <span>{dateString}</span>
         </div>
         <div className={styles.buttonsBlock}>
-            <button className={styles.editButton}
-              onClick={() => {navigate(editLink)}}
-            >
-              Редактировать
-            </button>
             <button className={styles.goButton} 
-              onClick={() => {navigate(link)}}
+              onClick={() => {onQrCreateClick()}}
+              disabled={!isButtonActive}
             >
-              Перейти
+              Создать QR-код
             </button>
             
         </div>
@@ -29,4 +24,4 @@ function Eventcard({ title, dateString, imgSrc, link, editLink, isBorder }) {
   )
 }
 
-export default Eventcard
+export default QrEventCard

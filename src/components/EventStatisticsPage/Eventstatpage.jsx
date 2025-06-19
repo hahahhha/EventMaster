@@ -11,6 +11,7 @@ import Badge from './Ratingbadge';
 import Visitbadge from './Visitbadge';
 import Usertable from './Usertable';
 import Modal from '../Modal/Modal';
+import checkIsAdmin from '../../functions/checkIsAdmin';
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8', '#A4DE6C'];
 
@@ -65,7 +66,7 @@ function Eventstatpage() {
   const getEventData = async () => {
     try {
       const response = await axios.get(`/api/event/${id}`);
-      const rating = parseInt(response.data.event.rating_points_sum) / parseInt(response.data.event.raters_amount) || `?`;
+      const rating = parseInt(response.data.event.rating_points_sum) / parseInt(response.data.event.raters_amount) || `0`;
       setEventData({
         ...response.data.event,
         avgRating: rating
@@ -98,6 +99,7 @@ function Eventstatpage() {
     console.log(window.innerWidth);
     getEventData();
     getRatings();
+    checkIsAdmin();
   }, [])
 
   return (
@@ -118,7 +120,7 @@ function Eventstatpage() {
               <BarChart
                 width={screenWidth >= 800 ? 350 : 300}
                 height={300}
-                data={testRatingData}
+                data={ratingChartData}
               >
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="rating" /> {/* Показываем оценки на оси X */}

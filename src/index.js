@@ -33,6 +33,13 @@ import RegisterOrganizer from './components/RegisterRolePage/RegisterOrganizer';
 import GiveAdmin from './components/GiveRole/GiveAdmin';
 import GiveRole from './components/GiveRole/GiveRole';
 import GiveOrganizer from './components/GiveRole/GiveOrganizer';
+import EventManager from './components/EventManager/EventManager';
+import EditEvent from './components/EditEvent/EditEvent';
+import OrganizerPage from './components/OrganizerPage/OrganizerPage';
+import OrganizerStatistics from './components/OrganizerStatistics/OrganizerStatistics';
+import CreateQr from './components/CreateQR/CreateQr';
+import EventQrPage from './components/EventQrPage/EventQrPage';
+import MarkAtendee from './components/MarkAtendee/MarkAtendee';
 
 
 axios.defaults.baseURL = API_URL;
@@ -100,6 +107,34 @@ const router = createBrowserRouter([
   {
     path: "/admin/give-organizer",
     element: <GiveOrganizer />
+  },
+  {
+    path: "/admin/event-manager",
+    element: <EventManager getEventsUrl={'/api/event/all'}/>
+  },
+  {
+    path: "/edit-event",
+    element: <EditEvent />
+  },
+  {
+    path: "/organizer",
+    element: <OrganizerPage />
+  },
+  {
+    path: '/organizer/statistics',
+    element: <OrganizerStatistics />
+  },
+  {
+    path: '/organizer/event-manager',
+    element: <EventManager getEventsUrl={'/api/event/my'}/>
+  },
+  {
+    path: '/event-qr',
+    element: <EventQrPage />
+  },
+  {
+    path: '/mark-atendee',
+    element: <MarkAtendee />
   }
 ]);
 
