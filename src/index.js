@@ -141,7 +141,9 @@ const router = createBrowserRouter([
     path: '/mark-atendee',
     element: <MarkAtendee />
   }
-]);
+], {
+  basename: "/"
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
