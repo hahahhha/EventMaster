@@ -3,8 +3,10 @@ import Eventcard from '../AdminPage/Eventcard';
 import styles from '../../styles/EventManager/eventmanager.module.css';
 import AdminHeader from '../AdminHeader';
 import axios from 'axios';
+import Header from '../../components/Header';
 
 import formatDate from '../../functions/formatDate';
+import OrganizerHeader from '../OrganizerPage/OrganizerHeader';
 
 function EventManager({getEventsUrl}) {
   const [searchParams, setSearchParams] = useState('');
@@ -18,7 +20,7 @@ function EventManager({getEventsUrl}) {
   useEffect(() => {
     const getAllEvents = async () => {
       try {
-        const response = await axios.get(getEventsUrl);
+        const response = await axios.get(getEventsUrl, {withCredentials: true});
         setOriginalEvents(response.data.events);
         setEvents(response.data.events);
       } catch (error) {
@@ -32,7 +34,7 @@ function EventManager({getEventsUrl}) {
 
   return (
     <div className={styles.eventMngPage}>
-      <AdminHeader />
+      <OrganizerHeader />
       <div className={styles.searchBlock}>
         <div className={styles.inputGroup}>
           <label htmlFor='search'>Поиск по названию</label>

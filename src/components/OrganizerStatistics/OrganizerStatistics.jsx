@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 import EventBar from '../StatisticsPage/EventBar';
 import adminOrOrganizerCheck from '../../functions/adminOrOrganizerCheck';
+import formatDate from '../../functions/formatDate';
 
 function OrganizerStatistics() {
     const [events, setEvents] = useState([]);
@@ -72,7 +73,7 @@ function OrganizerStatistics() {
                             <EventBar
                                 key={`${item.id}_${index}`}
                                 title={shortString(item.title)}
-                                dateStr="11 июня, 14:00-16:00"
+                                dateStr={formatDate(item.date)}
                                 statLink={`/admin/event-statistics?id=${item.id}`}
                             />
                         ))

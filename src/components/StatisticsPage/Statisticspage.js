@@ -3,10 +3,12 @@ import AdminHeader from '../AdminHeader';
 import Footer from '../Footer';
 import styles from '../../styles/statisticspage.module.css';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
 import EventBar from './EventBar';
 import checkIsAdmin from '../../functions/checkIsAdmin';
+import { useNavigate } from 'react-router-dom';
+import adminOrOrganizerCheck from '../../functions/adminOrOrganizerCheck';
+import formatDate from '../../functions/formatDate';
 
 function Statisticspage() {
     const [events, setEvents] = useState([]);
@@ -39,9 +41,12 @@ function Statisticspage() {
     }
     
     useEffect(() => {
-        checkIsAdmin('/admin/statistics', navigate);
+        const check = async () => {
+            await adminOrOrganizerCheck('/admin/event-statistics?id=39', navigate);
+        }
+        check();
         setAllEvents();
-    }, [])
+    }, [navigate]);
 
     return (
     <div className={styles.statPage}>
@@ -72,7 +77,7 @@ function Statisticspage() {
                             <EventBar
                                 key={`${item.id}_${index}`}
                                 title={shortString(item.title)}
-                                dateStr="11 июня, 14:00-16:00"
+                                dateStr={formatDate(item.date)}
                                 statLink={`/admin/event-statistics?id=${item.id}`}
                             />
                         ))

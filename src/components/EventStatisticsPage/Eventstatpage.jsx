@@ -1,5 +1,5 @@
 import React, { useEffect, useState, PureComponent } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { PieChart, Pie, Cell } from 'recharts';
@@ -12,6 +12,9 @@ import Visitbadge from './Visitbadge';
 import Usertable from './Usertable';
 import Modal from '../Modal/Modal';
 import checkIsAdmin from '../../functions/checkIsAdmin';
+import adminOrOrganizerCheck from '../../functions/adminOrOrganizerCheck';
+
+import { toast, ToastContainer } from 'react-toastify';
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8', '#A4DE6C'];
 
@@ -56,7 +59,7 @@ const testVisitData = [
 function Eventstatpage() {
   const [ratingChartData, setRatingChartData] = useState([]);
   const [screenWidth, setScreenWidth] = useState();
-  
+  const navigate = useNavigate();
 
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -94,12 +97,20 @@ function Eventstatpage() {
     }
   }
 
+  const createNotify = (msg, type) => {
+    if (type === 'error') {
+      toast.error(msg);
+    } else {
+      toast.success(msg);
+    }
+  }
+
   useEffect(() => {
     setScreenWidth(window.innerWidth);
     console.log(window.innerWidth);
     getEventData();
     getRatings();
-    checkIsAdmin();
+    adminOrOrganizerCheck(`/admin/event-statistics?id=${id}`, navigate);
   }, [])
 
   return (
@@ -120,7 +131,7 @@ function Eventstatpage() {
               <BarChart
                 width={screenWidth >= 800 ? 350 : 300}
                 height={300}
-                data={ratingChartData}
+                data={testRatingData}
               >
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="rating" /> {/* Показываем оценки на оси X */}
@@ -180,9 +191,10 @@ function Eventstatpage() {
             </div>
           </div>
         </div>
-        <Usertable />
+        <Usertable eventId={id} createNotify={createNotify}/>
       </div>
       <Footer />
+      <ToastContainer />
     </div>
   )
 }

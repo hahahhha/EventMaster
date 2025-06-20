@@ -8,6 +8,7 @@ const checkIsAdmin = async (link, navigate) => {
       navigate(`/login?redir=${encodeURIComponent(link)}`);
     }
   } catch (error) {
+    console.log('checkIsAdmin', error);
     navigate(`/login?redir=${encodeURIComponent(link)}`);
   }
 }

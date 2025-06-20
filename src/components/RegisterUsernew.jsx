@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from '../../styles/RegisterRolePage/registerrolepage.module.css';
+import styles from '../styles/RegisterRolePage/registerrolepage.module.css'
 import axios from 'axios';
-import VerfiyBlock from './VerifyBlock';
-import checkIsAdmin from '../../functions/checkIsAdmin';
+import VerfiyBlock from './RegisterRolePage/VerifyBlock'
 
-function RegisterRolePage({ role, regUrl }) {
+
+function RegisterRolePage() {
+  const role = 'user';
   const navigate = useNavigate();
   const [isEmailTaken, setIsEmailTaken] = useState(false);
 
@@ -20,7 +21,7 @@ function RegisterRolePage({ role, regUrl }) {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
-    middleName: '',
+    patronymic: '',
     group: '',
     email: '',
     password: '',
@@ -42,9 +43,9 @@ function RegisterRolePage({ role, regUrl }) {
 
   const [isPasswordsEqual, setIsPasswordsEqual] = useState(true);
 
-  useEffect(() => {
-    checkIsAdmin('/admin/reg-admin', navigate);
-  }, [])
+//   useEffect(() => {
+//     checkIsAdmin('/admin/reg-admin', navigate);
+//   }, [])
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -63,8 +64,7 @@ function RegisterRolePage({ role, regUrl }) {
       email: '',
       password: '',
       confirmPassword: '',
-      birthdate: '',
-      institute: ''
+      birthdate: ''
     }
     let isAnyErrors = false;
     if (!formData.firstName) {
@@ -138,7 +138,7 @@ function RegisterRolePage({ role, regUrl }) {
       setIsPasswordsEqual(true);
     }
     try {
-      await axios.post(regUrl, {
+      await axios.post('/api/auth/reg', {
         name: formData.firstName,
         surname: formData.lastName,
         patronymic: formData.middleName,
@@ -195,7 +195,7 @@ function RegisterRolePage({ role, regUrl }) {
       <div className={`${styles.formContainer} ${goAwayClass}`}>
         <form onSubmit={onFormSubmit}>
           <div className={styles.topRow}>
-            <h1>Регистрация {role}</h1>
+            <h1>Регистрация</h1>
             <a href="/admin" className={styles.closeButton}>✕</a>
           </div>
           <div className={styles.row}>
@@ -350,7 +350,6 @@ function RegisterRolePage({ role, regUrl }) {
                 />
                 
               </div>
-              
             </div>
           </div>
           <button type="submit" className={styles.submitButton}>

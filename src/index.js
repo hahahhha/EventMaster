@@ -40,6 +40,7 @@ import OrganizerStatistics from './components/OrganizerStatistics/OrganizerStati
 import CreateQr from './components/CreateQR/CreateQr';
 import EventQrPage from './components/EventQrPage/EventQrPage';
 import MarkAtendee from './components/MarkAtendee/MarkAtendee';
+import RegisterUsernew from './components/RegisterUsernew';
 
 
 axios.defaults.baseURL = API_URL;
@@ -52,9 +53,13 @@ const router = createBrowserRouter([
     path: "/login",
     element: <Loginpage />
   },
+  // {
+  //   path: "/register",
+  //   element: <RegisterUserPage />
+  // },
   {
     path: "/register",
-    element: <RegisterUserPage />
+    element: <RegisterUsernew />
   },
   {
     path: "/main",
